@@ -146,33 +146,6 @@
 
                 <div class="item">
 
-                    <!-- <h3 class="ui center aligned header">Stackable Grid</h3>
-                    <div class="ui two column stackable grid">
-                        <div class="column">
-                            <div class="ui segment">Content1</div>
-                        </div>
-                        <div class="column">
-                            <div class="ui segment">Content2</div>
-                        </div>
-                        <div class="three column row">
-                            <div class="column">
-                            <div class="ui segment">Content3</div>
-                            </div>
-                            <div class="column">
-                            <div class="ui segment">Content4</div>
-                            </div>
-                            <div class="column">
-                            <div class="ui segment">Content5</div>
-                            </div>
-                        </div>
-                        <div class="ten wide column">
-                            <div class="ui segment">Content6</div>
-                        </div>
-                        <div class="six wide column">
-                            <div class="ui segment">Content7</div>
-                        </div>
-                    </div> -->
-
                 </div>
 
                 <div class="item">

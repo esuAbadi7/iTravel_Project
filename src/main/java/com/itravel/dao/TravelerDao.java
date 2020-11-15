@@ -46,30 +46,75 @@ public class TravelerDao {
             return null;
         }
     }
-// TODO Creating addTraveler
-//    public boolean addTraveler(Traveler traveler) {
-//
-//
-//
-//        String sql = "insert into traveler values(?,?,?,?)";
-//        try (Connection con = ConnectionManager.getConnection()){
-//            PreparedStatement st = con.prepareStatement(sql);
-//
-//
-//            st.setString(1, user.getEmail());
-//            st.setString(2, user.getPassword());
-//            st.setBoolean(3, user.isActive());
-//            st.setString(4, user.getRole().toString());
-//
-//            st.executeUpdate();
-//            return true;
-//
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//            return false;
-//        }
-//
-//    }
+
+    public boolean updateTravelerDetails(String userId, Traveler traveler){
+
+        String sql = "update traveler " +
+                "set firstname=?, middlename=?, lastname= ?, gender=? "+
+                "where user_id=?";
+
+        try (Connection con = ConnectionManager.getConnection()){
+            PreparedStatement st = con.prepareStatement(sql);
+
+
+            st.setString(1, traveler.getFirstName());
+            st.setString(2, traveler.getMiddleName());
+            st.setString(3, traveler.getLastName());
+            st.setString(4, traveler.getGender());
+
+            st.executeUpdate();
+            return true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+
+    }
+
+
+    public boolean addTraveler(Traveler traveler) {
+
+        User travelerUser = new User(traveler.getEmail(),traveler.getPassword(),traveler.isActive(),traveler.getRole());
+        Address travelerAddress = traveler.getAddress();
+
+        UserDao userDao = new UserDao();
+        boolean isSuccessful = userDao.addUser(travelerUser);
+        AddressDao addressDao = new AddressDao();
+        int addressId = addressDao.addAddress(travelerAddress);
+
+        if(!isSuccessful || addressId == -1 ){
+            return false;
+        }
+
+
+        String sql = "insert into traveler (email,user_id,firstname,middlename,lastname, gender, birth_year,profile_url,thumbnail_url,address_id) " +
+                "values(?,?,?,?,?,?,?,?,?,?)";
+        try (Connection con = ConnectionManager.getConnection()){
+            PreparedStatement st = con.prepareStatement(sql);
+
+
+            st.setString(1, traveler.getEmail());
+            st.setString(2, traveler.getTravelerId());
+            st.setString(3, traveler.getFirstName());
+            st.setString(4, traveler.getMiddleName());
+            st.setString(5,traveler.getLastName());
+            st.setString(6,traveler.getGender());
+            st.setInt(7,traveler.getBirthYear());
+            st.setString(8,traveler.getProfilePicUrl());
+            st.setString(9,traveler.getThumbNail());
+            st.setInt(10, addressId);
+
+
+            st.executeUpdate();
+            return true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+
+    }
 
     private List<Traveler> populateTravelerList(ResultSet rs) throws SQLException {
         List<Traveler> list = new ArrayList<>();
@@ -93,7 +138,7 @@ public class TravelerDao {
             user = userDao.getUser(email);
             address = addressDao.getAddress(addressId);
 
-            list.add(new Traveler(travelerId, firstName, middleName, lastName, gender, birthYear, email, user.getPassword(), user.isActive(), Role.USER, address));
+            list.add(new Traveler(travelerId, firstName, middleName, lastName, gender, birthYear, email, user.getPassword(), user.isActive(), Role.USER, address, profilePicUrl, thumbNail));
         }
         return list;
     }

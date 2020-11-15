@@ -27,7 +27,7 @@ public class AddressDao {
         }
     }
 
-    public boolean addAddress(Address address)  {
+    public int addAddress(Address address)  {
 
         String sql = "insert into address (city, state, street, zipcode) values(?,?,?,?)";
         try (Connection con = ConnectionManager.getConnection()){
@@ -40,11 +40,17 @@ public class AddressDao {
             st.setInt(4, address.getZipcode());
 
             st.executeUpdate();
-            return true;
+            ResultSet rs = st.getGeneratedKeys();
+            int generatedKey = 0;
+            if(rs.next()){
+                generatedKey = rs.getInt(1);
+            }
+
+            return generatedKey;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            return false;
+            return -1;
         }
     }
 

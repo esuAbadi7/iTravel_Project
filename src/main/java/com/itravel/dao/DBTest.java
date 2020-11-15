@@ -1,8 +1,6 @@
 package com.itravel.dao;
 
-import com.itravel.model.Location;
-import com.itravel.model.Role;
-import com.itravel.model.User;
+import com.itravel.model.*;
 
 import java.util.List;
 
@@ -37,6 +35,19 @@ public class DBTest {
         User user = userdao.login("edagnew@miu.edu","esuAbadi");
         System.out.println(user);
 
+        AddressDao addressDao = new AddressDao();
+        Address address1= new Address("IA","Fair","1000 N 4th", 10020 );
+//        int adId = addressDao.addAddress();
+//        System.out.println("The Newly Inserted Address Id :"+ adId);
 
+
+        Traveler traveler = new Traveler("Solomon","Kassa","Mekonnen","Male",1980,"solkassa@gmail.com","solkassa",true,Role.USER, address1);
+        TravelerDao travelerDao = new TravelerDao();
+        travelerDao.addTraveler(traveler);
+        System.out.println(travelerDao.getAllTraveler());
+
+        System.out.println("Logging in with traveler");
+        User user1 = userdao.login("solkassa@gmail.com","esuAbadi");
+        System.out.println(user1);
     }
 }

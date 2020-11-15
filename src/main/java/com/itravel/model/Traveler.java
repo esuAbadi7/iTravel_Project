@@ -32,12 +32,14 @@ public class Traveler extends User {
         this.birthYear = birthYear;
         this.travelerId = idGenerator();
         this.address = address;
+        this.profilePicUrl = "";
+        this.thumbNail = "";
 
     }
 
     public Traveler(String travelerId,String firstName, String middleName,
                     String lastName, String gender, int birthYear, String email, String password,
-                    boolean isActive, Role role, Address address) {
+                    boolean isActive, Role role, Address address, String profilePicUrl, String thumbNail ) {
         super(email, password,isActive,  role);
 
         this.firstName = firstName;
@@ -47,6 +49,8 @@ public class Traveler extends User {
         this.birthYear = birthYear;
         this.travelerId = travelerId;
         this.address = address;
+        this.profilePicUrl = profilePicUrl;
+        this.thumbNail = thumbNail;
 
     }
 
@@ -136,6 +140,10 @@ public class Traveler extends User {
 
     public void setRecord(PostRecord record) {
         this.record = record;
+    }
+
+    public String getFullName(){
+        return this.getFirstName()+" "+getMiddleName()+ " "+ getLastName();
     }
 
     @Override
