@@ -154,18 +154,21 @@ public class UserDao {
 
     }
 
-    public void setActivation(String email, boolean activation) {
+    public boolean setActivation(String email, boolean activation) {
 
         String sql = "update user set active=? where email=? ";
+//        update user set active=false where email='solkassa@gmail.com'
         try (Connection con = ConnectionManager.getConnection()){
             PreparedStatement st = con.prepareStatement(sql);
 
-            st.setString(1, email);
-            st.setBoolean(2, activation);
+            st.setBoolean(1, activation);
+            st.setString(2, email);
             st.executeUpdate();
+            return true;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
 
     }

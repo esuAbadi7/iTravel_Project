@@ -13,6 +13,7 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>GetTravelerServlet</servlet-name>
         <servlet-class>com.itravel.controller.GetTravelerServlet</servlet-class>
@@ -21,4 +22,14 @@
         <servlet-name>GetTravelerServlet</servlet-name>
         <url-pattern>/getTraveler</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActivateUserServlet</servlet-name>
+        <servlet-class>com.itravel.controller.ActivateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActivateUserServlet</servlet-name>
+        <url-pattern>/activateUser</url-pattern>
+    </servlet-mapping>
+
 </web-app>

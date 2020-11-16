@@ -43,12 +43,14 @@ public class DBTest {
 
         Traveler traveler = new Traveler("Solomon","Kassa","Mekonnen","Male",1980,"solkassa@gmail.com","solkassa",true,Role.USER, address1);
         TravelerDao travelerDao = new TravelerDao();
-        travelerDao.addTraveler(traveler);
+//        travelerDao.addTraveler(traveler);
         System.out.println(travelerDao.getAllTraveler());
 
         System.out.println("Logging in with traveler");
         User user1 = userdao.login("solkassa@gmail.com","esuAbadi");
+
         System.out.println(user1);
+        System.out.println("Set Activation Result :" + userdao.setActivation("solkassa@gmail.com",true));
 
         System.out.println("Get active Travelers /n"+ travelerDao.getActiveTravelers());
         System.out.println("Get Inactive Travelers /n"+ travelerDao.getInactiveTravelers());

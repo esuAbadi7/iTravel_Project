@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="ui error message">
-                                <p>  </p>
+                                <p> <%=request.getAttribute("errMsg")%> </p>
                             </div>
                             <div class="ui blue submit button">
                                 <input type="submit" value="Login">
