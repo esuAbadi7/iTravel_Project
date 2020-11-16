@@ -3,13 +3,17 @@ package com.itravel.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.itravel.dao.TravelerDao;
 import com.itravel.dao.UserDao;
+import com.itravel.model.Role;
+import com.itravel.model.Traveler;
 import com.itravel.model.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,9 +34,23 @@ public class LoginServlet extends HttpServlet {
             //Return Error Mesa
         }else{
             if(user.isActive()){
-                request.setAttribute("traveler",user);
-                RequestDispatcher rd = request.getRequestDispatcher("travelerHome.jsp");
-                rd.forward(request,response);
+
+                if(Role.USER == user.getRole() ){
+
+                    HttpSession session = request.getSession();
+                    TravelerDao travelerDao = new TravelerDao();
+                    Traveler traveler = travelerDao.getTravelerUsingEmail(email);
+                    session.setAttribute("traveler", traveler);
+                    RequestDispatcher rd = request.getRequestDispatcher("travelerHome.jsp");
+                    rd.forward(request,response);
+
+                }else if(Role.ADMIN == user.getRole()){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("admin",user);
+                    RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
+                    rd.forward(request,response);
+                }
+
             }else{
                 String errMsg = "Account is not Active!";
                 request.setAttribute("errMsg",errMsg);

@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.itravel.model.Traveler" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.itravel.dao.TravelerDao" %><%--
   Created by IntelliJ IDEA.
   User: esuab
   Date: 11/15/2020
@@ -12,18 +14,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link href="jsp.css" type="text/css" rel="stylesheet" />
 
+    <script src="<c:url value = "/js/travelersList.js"/>"></script>
+
 </head>
 <body>
+
+<%!     TravelerDao travelerDao = new TravelerDao();
+        List<Traveler> travelerList = travelerDao.getAllTraveler();  %>
 
 <sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
 
 </sript>
 
+<script>
+    $(document).ready(function() {
+        $('#country').change(function(event) {
+            var $country = $("select#country").val();
+            $.get('ActionServlet', {
+                countryname : $country
+            }, function(responseJson) {
+                var $select = $('#states');
+                $select.find('option').remove();
+                $.each(responseJson, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo($select);
+                });
+            });
+        });
+    });
+</script>
+
 <div class="ui pointing menu">
     <a class="item">
         Home
     </a>
-    <a class="active item">
+    <a href="#" class="active item">
         Travelers Users
     </a>
     <a class="item">
@@ -88,34 +112,48 @@
         <div class="ui container">
             <div class="ui relaxed divided items">
 <%--                Indivdual Traveler record--%>
+                <% for(Traveler traveler: travelerList) { %>
                 <div class="item">
                     <!-- This link should take to user profile page -->
                     <a href="#" class="ui small circular image">
-                        <img src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
+                        <img src="<%=traveler.getProfilePicUrl()%>>">
                     </a>
 
                     <div class="content">
                         <!-- This link should take to user profile page -->
-                        <a href="www.google.com" class="header">Traveler Name</a>
+                        <a href="www.google.com" class="header"><%=traveler.getFullName()%>Traveler Name</a>
                         <div class="meta">
-                            <label>Birth Year</label>
+                            <label><%=traveler.getBirthYear()%> Birth Year</label>
                         </div>
                         <div class="meta">
-                            <label>Gender</label>
+                            <label><%=traveler.getGender()%>Gender</label>
                         </div>
                         <div class="description">
+
                             A description which may flow for several lines and give context to the content.
+                            <%=traveler.getTravelerId()%>
                         </div>
                         <div class="extra">
+                            <%  if(traveler.isActive()){ %>
                             <div class="ui right floated inverted red button">
                                 Deactivate
                             </div>
                             <div class="ui right floated inverted red disabled button">
                                 Activate
                             </div>
+                            <% } else{%>
+                            <div class="ui right floated inverted red disabled button">
+                                Deactivate
+                            </div>
+                            <div class="ui right floated inverted red button">
+                                Activate
+                            </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
+
+            <% } %>
 
             </div>
 

@@ -31,14 +31,31 @@ public class TravelerDao {
         }
     }
 
-    public Traveler getAllTraveler() {
+    public Traveler getTravelerUsingEmail(String email) {
+        String sql = "select * from traveler where email= ?";
+        try (Connection con = ConnectionManager.getConnection()) {
+
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, email);
+            ResultSet resultSet = st.executeQuery();
+
+            return populateTravelerList(resultSet).get(0);
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Traveler> getAllTraveler() {
         String sql = "select * from traveler";
         try (Connection con = ConnectionManager.getConnection()) {
 
             Statement st = con.createStatement();
             ResultSet resultSet = st.executeQuery(sql);
 
-            return populateTravelerList(resultSet).get(0);
+            return populateTravelerList(resultSet);
 
 
         } catch (SQLException throwables) {
