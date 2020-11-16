@@ -49,5 +49,8 @@ public class DBTest {
         System.out.println("Logging in with traveler");
         User user1 = userdao.login("solkassa@gmail.com","esuAbadi");
         System.out.println(user1);
+
+        System.out.println("Get active Travelers /n"+ travelerDao.getActiveTravelers());
+        System.out.println("Get Inactive Travelers /n"+ travelerDao.getInactiveTravelers());
     }
 }

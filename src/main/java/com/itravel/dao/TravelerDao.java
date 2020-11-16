@@ -31,6 +31,46 @@ public class TravelerDao {
         }
     }
 
+    public List<Traveler> getActiveTravelers() {
+        String sql = "SELECT *\n" +
+                "FROM traveler\n" +
+                "INNER JOIN user ON traveler.email = user.email\n" +
+                "where user.active=true;";
+        try (Connection con = ConnectionManager.getConnection()) {
+
+            Statement st = con.createStatement();
+            ResultSet resultSet = st.executeQuery(sql);
+
+            return populateTravelerList(resultSet);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Traveler> getInactiveTravelers() {
+        String sql = "SELECT *\n" +
+                "FROM traveler\n" +
+                "INNER JOIN user ON traveler.email = user.email\n" +
+                "where user.active=false ;";
+        try (Connection con = ConnectionManager.getConnection()) {
+
+            Statement st = con.createStatement();
+            ResultSet resultSet = st.executeQuery(sql);
+
+            return populateTravelerList(resultSet);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
+
+
+
+
     public Traveler getTravelerUsingEmail(String email) {
         String sql = "select * from traveler where email= ?";
         try (Connection con = ConnectionManager.getConnection()) {
