@@ -25,6 +25,7 @@ public class GetPostServlet extends HttpServlet {
 
         PostDao postDao = new PostDao();
         List<Post> postList = postDao.getAllPosts();
+//        postDao.getUnhealthyPosts()
 
         Map<String, Post> allPosts = new LinkedHashMap<>();
         for(Post post: postList){
