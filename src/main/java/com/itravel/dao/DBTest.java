@@ -60,12 +60,22 @@ public class DBTest {
 
 
 
-        Post post1 = new Post("Hi this is My First Post!!!",LocalDateTime.now(),"",false,traveler,new Location(198.33,-1006.9866));
+//        Post post1 = new Post("Hi this is My First Post!!!",LocalDateTime.now(),"",false,traveler,new Location(198.33,-1006.9866));
         PostDao postDao = new PostDao();
-        System.out.println("Adding an Address Successful: "+ addressDao.addAddress(address1));
-        System.out.println("Adding a Location Successful: "+ locationDao.addLocation(new Location(10.33,-4546.9866)));
-        System.out.println("Adding a Post Successful: "+ postDao.addPost(post1));
-        System.out.println(postDao.getUnhealthyPosts());
+//        System.out.println("Adding an Address Successful: "+ addressDao.addAddress(address1));
+//        System.out.println("Adding a Location Successful: "+ locationDao.addLocation(new Location(10.33,-4546.9866)));
+//        System.out.println("Adding a Post Successful: "+ postDao.addPost(post1));
+//        System.out.println(postDao.getUnhealthyPosts());
+//        System.out.println(postDao.getAllPosts());
+
+//        String a = null;
+//
+//        System.out.println(d);
+        Location location = new Location(123,123);
+
+        Post post = new Post("Post Test", LocalDateTime.now(), "", true, traveler, location);
+
+        boolean result = postDao.addPost(post);
 
 
     }

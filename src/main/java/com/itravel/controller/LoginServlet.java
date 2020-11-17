@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
                     TravelerDao travelerDao = new TravelerDao();
                     Traveler traveler = travelerDao.getTravelerUsingEmail(email);
                     session.setAttribute("traveler", traveler);
-                    RequestDispatcher rd = request.getRequestDispatcher("travelerHome.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("travelerProfile.jsp");
                     rd.forward(request,response);
 
                 }else if(Role.ADMIN == user.getRole()){
