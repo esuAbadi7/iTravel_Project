@@ -31,7 +31,7 @@ public class LocationDao {
         }
     }
 
-    public boolean addLocation(Location location)  {
+    public int addLocation(Location location)  {
 
         String sql = "insert into location(latitude, longitude) values(?,?)";
         try (Connection con = ConnectionManager.getConnection()){
@@ -42,11 +42,18 @@ public class LocationDao {
             st.setDouble(2, location.getLongitude());
 
             st.executeUpdate();
-            return true;
+            ResultSet rs = st.getGeneratedKeys();
+            int generatedKey= 0;
+            if(rs.next()){
+                generatedKey = rs.getInt(1);
+            }
+
+
+            return generatedKey;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            return false;
+            return -1;
         }
     }
 }

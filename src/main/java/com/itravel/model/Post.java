@@ -1,5 +1,6 @@
 package com.itravel.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,25 +10,51 @@ import static com.itravel.model.Util.idGenerator;
 
 public class Post {
     private String postId;
-    private Date date;
+    private LocalDateTime postDate;
     private String postText;
     private String imageUrl;
+    private boolean healthyType;
     private int likes;
     private int dislikes;
     private boolean isVisible;
     private Location location;
     private List<Comment> comments;
+    private Traveler traveler;
 
 
-    public Post(String id, Date date) {
+
+    public Post(String postText, LocalDateTime date, String postImage, boolean healthyType, Traveler traveler, Location location ) {
 
         this.postId = idGenerator(); //needs to be unique
-        this.date = date;
+        this.postDate = date;
+        this.postText = postText;
+        this.imageUrl = postImage;
+        this.healthyType = healthyType;
+        this.traveler = traveler;
         likes=0;
         dislikes=0;
         isVisible=true;
         comments= new ArrayList<>();
+        this.location = location;
     }
+
+    public Post(String id, String postText, LocalDateTime date, String postImage, boolean healthyType, int likes, int dislikes, boolean isVisible, Location location, List<Comment> comments, Traveler traveler) {
+
+        this.postId = id;
+        this.postDate = date;
+        this.postText = postText;
+        this.imageUrl = postImage;
+        this.healthyType = healthyType;
+        this.likes=likes;
+        this.dislikes=dislikes;
+        this.isVisible= isVisible;
+        this.location = location;
+        this.comments= comments ;
+        this.traveler = traveler;
+    }
+
+
+
 
     public void addComments(Comment comment){
         comments.add(comment);
@@ -35,6 +62,10 @@ public class Post {
 
     public List<Comment> getComments() {
         return comments;
+    }
+
+    public Traveler getTraveler() {
+        return traveler;
     }
 
     public void setLocation(double longitude, double latitude) {
@@ -65,8 +96,8 @@ public class Post {
         return postId;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getPostDate() {
+        return postDate;
     }
 
     public String getPostText() {
@@ -93,11 +124,19 @@ public class Post {
         isVisible = visible;
     }
 
+    public Boolean getHealthyType() {
+        return healthyType;
+    }
+
+    public void setHealthyType(Boolean type) {
+        this.healthyType = type;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "postId='" + postId + '\'' +
-                ", date=" + date +
+                ", date=" + postDate +
                 ", postText='" + postText + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", likes=" + likes +
