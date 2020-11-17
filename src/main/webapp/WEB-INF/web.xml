@@ -27,6 +27,22 @@
         <servlet-name>ActivateUserServlet</servlet-name>
         <servlet-class>com.itravel.controller.ActivateUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetPostServlet</servlet-name>
+        <servlet-class>com.itravel.controller.GetPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPostServlet</servlet-name>
+        <servlet-class>com.itravel.controller.AddPostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddPostServlet</servlet-name>
+        <url-pattern>/addPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetPostServlet</servlet-name>
+        <url-pattern>/postAction</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ActivateUserServlet</servlet-name>
         <url-pattern>/activateUser</url-pattern>

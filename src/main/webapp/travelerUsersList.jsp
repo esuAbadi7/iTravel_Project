@@ -27,6 +27,50 @@
 
 </sript>
 
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $("#search").autocomplete({
+                width: 300,
+                max: 10,
+                delay: 100,
+                minLength: 1,
+                autoFocus: true,
+                cacheLength: 1,
+                scroll: true,
+                highlight: false,
+                source: function (request, response) {
+                    $.ajax({
+                        url: 'getTraveler', //Here we will user the URL that we want to hit
+                        type: 'post',
+                        async: true,
+                        cache: false,
+                        data: {
+                            searchText: request.term
+                        },
+                        beforeSubmit: function () {
+                        },
+                        success: function (response) {
+                            if (response.status == 'OK') {
+                                var data = response.suggestedKeywords; //Here populate data with fetched list
+                                response(data);
+                            } else {
+                                alert("failed try again...");
+                            }
+                        },
+                        error: function () {
+                            alert('System error occured, please try again ...');
+                        }
+                    });
+                }
+            });
+        });
+    })
+</script>
+
+
+
 <script>
     $(document).ready(function() {
         $('#status').on("click",load_travelers);
@@ -155,7 +199,7 @@
                 <div class="left floated right aligned three wide column">
                     <div class="ui category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Search Traveler...">
+                            <input id="search" class="prompt" type="text" placeholder="Search Traveler...">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>

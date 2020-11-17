@@ -50,6 +50,24 @@ public class PostDao {
         }
     }
 
+    public List<Post> getAllPosts() {
+        String sql = "select * from post";
+
+        try (Connection con = ConnectionManager.getConnection()) {
+
+            PreparedStatement st = con.prepareStatement(sql);
+//            st.setBoolean(1, false);
+            ResultSet resultSet = st.executeQuery();
+
+            return populatePostList(resultSet);
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
     public boolean addPost(Post post) {
 
 //        id	user_id	post_time	type	post_text	image_url	likes	dislikes	visibility	location_id

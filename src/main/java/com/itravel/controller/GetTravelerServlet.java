@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,20 @@ import java.util.Map;
 //@WebServlet(name = "GetTravelerServlet")
 public class GetTravelerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        TravelerDao travelerDao = new TravelerDao();
+        Map<String, List<String> > activeTravelers = new LinkedHashMap<>();
+        List<String> suggestedWord = new ArrayList<>();
+        for(Traveler traveler: travelerDao.getActiveTravelers()){
+            suggestedWord.add(traveler.getFirstName());
+            suggestedWord.add(traveler.getLastName());
+        }
+        activeTravelers.put("suggestedKeywords",suggestedWord);
 
+        String json = null;
+        json = new Gson().toJson(activeTravelers);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

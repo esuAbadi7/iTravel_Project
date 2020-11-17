@@ -20,13 +20,13 @@
 </sript>
 
 <div class="ui pointing menu">
-    <a class="item">
+    <a href="travelerHomePage.jsp" class="item">
         Home
     </a>
-    <a class="item">
-        Travelers Users
+    <a class="active item">
+        Profile
     </a>
-    <a class="item">
+    <a href="" class="item">
         Weather Service
     </a>
     <div class="right menu">
