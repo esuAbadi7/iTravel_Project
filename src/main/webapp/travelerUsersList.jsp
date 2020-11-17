@@ -29,8 +29,15 @@
 
 <script>
     $(document).ready(function() {
-        $('#status').change(function(event) {
+        $('#status').on("click",load_travelers);
+        load_travelers();
+    });
+
+    function load_travelers(event){
+
             var $activeStatus = $("select#status").val();
+
+
             $.get('getTraveler', {
                 status : $activeStatus
             }, function(responseJson) {
@@ -44,40 +51,81 @@
                     // const data = JSON.parse(value);
                     $data = value;
                     html = '<div id="'+value.travelerId+'"class="item"> ' +
-                            '<a href="#" class="ui small circular image"> ' +
-                                '<img src=""> ' +
-                            '</a> ' +
+                        '<a href="#" class="ui small circular image"> ' +
+                        '<img src=""> ' +
+                        '</a> ' +
 
-                            '<div class="content">' +
-                                '<!-- This link should take to user profile page --> ' +
-                                '<a href="'+$data.travelerId+'" class="header">'+value.firstName+' '+value.middleName+' '+value.lastName+  '</a> ' +
-                                '<div class="meta"> ' +
-                                '<label>' +value.birthYear+'</label> ' +
+                        '<div class="content">' +
+                        '<!-- This link should take to user profile page --> ' +
+                        '<a href="'+$data.travelerId+'" class="header">'+value.firstName+' '+value.middleName+' '+value.lastName+  '</a> ' +
+                        '<div class="meta"> ' +
+                        '<label>' +value.birthYear+'</label> ' +
                         '   </div> ' +
-                            '<div class="meta"> ' +
-                                '<label>' +value.gender+'</label> ' +
-                            '</div> ' +
-                            '<div class="description">' +
-                                'A description which may flow for several lines and give context to the content. ' +
-                            '</div> ' +
-                            '<div class="extra"> ' +
-                                '<div class="ui right floated inverted red disabled button">' +
-                                    'Deactivate ' +
-                                '</div> ' +
-                            '<div class="ui right floated inverted red button">' +
-                                'Activate ' +
-                            '</div> ' +
+                        '<div class="meta"> ' +
+                        '<label>' +value.gender+'</label> ' +
+                        '</div> ' +
+                        // '<div class="description">' +
+                        //     'A description which may flow for several lines and give context to the content. ' +
+                        // '</div> ' +
+                        '<div class="extra"> ' +
+                        '<div id="deactivate_btn_'+$data.travelerId+'"  data-tId ="'+$data.travelerId+'"  data-btn-type="deactivate"  data-email="'+$data.email+'" class="ui right floated inverted red button">' +
+                        'Deactivate ' +
+                        '</div> ' +
+                        '<div id="activate_btn_'+$data.travelerId+'" data-tId ="'+$data.travelerId+'" data-btn-type="activate"  data-email="'+$data.email+'" class="ui right floated inverted red button">' +
+                        'Activate ' +
+                        '</div> ' +
                         '</div> ' +
                         '</div> ' +
                         '</div>';
                     $select.append(
                         html
                     );
+                    if($data.isActive == true){
+                        $("#activate_btn_"+$data.travelerId).addClass("disabled");
+
+                    }else{
+                        $("#deactivate_btn_"+$data.travelerId).addClass("disabled");
+                    }
+                    $("#activate_btn_"+$data.travelerId).on("click",change_activation);
+                    $("#deactivate_btn_"+$data.travelerId).on("click",change_activation);
 
                 });
             });
+    }
+
+    function change_activation (event){
+
+        var $traveler_email = event.target.getAttribute('data-email');
+        var $buttonType = event.target.getAttribute('data-btn-type');
+        var $travelerId = event.target.getAttribute('data-tId');
+        var $status;
+        if($buttonType == 'activate'){
+            $status = true;
+        }else{
+            $status = false;
+        }
+
+        $.post('activateUser', {
+            travelerEmail : $traveler_email,
+            status: $status
+        },function(responseJson) {
+           if(responseJson=='successful'){
+               if($status == true){
+                   $("#activate_btn_"+$travelerId).addClass("disabled");
+                   $("#deactivate_btn_"+$travelerId).removeClass("disabled");
+               }else{
+                   $("#deactivate_btn_"+$travelerId).addClass("disabled");
+                   $("#activate_btn_"+$travelerId).removeClass("disabled");
+               }
+           } else{
+
+           }
         });
-    });
+
+
+    }
+
+
 </script>
 
 <div class="ui pointing menu">
@@ -139,48 +187,48 @@
         <div class="ui container">
             <div class="ui relaxed divided items" id ="travelersListContainer">
 <%--                Indivdual Traveler record--%>
-                <% for(Traveler traveler: travelerList) { %>
-                <div class="item">
-                    <!-- This link should take to user profile page -->
-                    <a href="#" class="ui small circular image">
-                        <img src="<%=traveler.getProfilePicUrl()%>">
-                    </a>
+<%--                <% for(Traveler traveler: travelerList) { %>--%>
+<%--                <div class="item">--%>
+<%--                    <!-- This link should take to user profile page -->--%>
+<%--                    <a href="#" class="ui small circular image">--%>
+<%--                        <img src="<%=traveler.getProfilePicUrl()%>">--%>
+<%--                    </a>--%>
 
-                    <div class="content">
-                        <!-- This link should take to user profile page -->
-                        <a href="www.google.com" class="header"><%=traveler.getFullName()%></a>
-                        <div class="meta">
-                            <label><%=traveler.getBirthYear()%> </label>
-                        </div>
-                        <div class="meta">
-                            <label><%=traveler.getGender()%></label>
-                        </div>
-<%--                        <div class="description">--%>
-
-<%--                            A description which may flow for several lines and give context to the content.--%>
-<%--                            <%=traveler.getTravelerId()%>--%>
+<%--                    <div class="content">--%>
+<%--                        <!-- This link should take to user profile page -->--%>
+<%--                        <a href="www.google.com" class="header"><%=traveler.getFullName()%></a>--%>
+<%--                        <div class="meta">--%>
+<%--                            <label><%=traveler.getBirthYear()%> </label>--%>
 <%--                        </div>--%>
-                        <div class="extra">
-                            <%  if(traveler.isActive()){ %>
-                                <div class="ui right floated inverted red button">
-                                    Deactivate
-                                </div>
-                                <div class="ui right floated inverted red disabled button">
-                                    Activate
-                                </div>
-                            <% } else{%>
-                                <div class="ui right floated inverted red disabled button">
-                                    Deactivate
-                                </div>
-                                <div class="ui right floated inverted red button">
-                                    Activate
-                                </div>
-                            <% } %>
-                        </div>
-                    </div>
-                </div>
+<%--                        <div class="meta">--%>
+<%--                            <label><%=traveler.getGender()%></label>--%>
+<%--                        </div>--%>
+<%--&lt;%&ndash;                        <div class="description">&ndash;%&gt;--%>
 
-            <% } %>
+<%--&lt;%&ndash;                            A description which may flow for several lines and give context to the content.&ndash;%&gt;--%>
+<%--&lt;%&ndash;                            <%=traveler.getTravelerId()%>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        </div>&ndash;%&gt;--%>
+<%--                        <div class="extra">--%>
+<%--                            <%  if(traveler.isActive()){ %>--%>
+<%--                                <div class="ui right floated inverted red button">--%>
+<%--                                    Deactivate--%>
+<%--                                </div>--%>
+<%--                                <div class="ui right floated inverted red disabled button">--%>
+<%--                                    Activate--%>
+<%--                                </div>--%>
+<%--                            <% } else{%>--%>
+<%--                                <div class="ui right floated inverted red disabled button">--%>
+<%--                                    Deactivate--%>
+<%--                                </div>--%>
+<%--                                <div class="ui right floated inverted red button">--%>
+<%--                                    Activate--%>
+<%--                                </div>--%>
+<%--                            <% } %>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
+<%--            <% } %>--%>
 
             </div>
 
@@ -189,7 +237,7 @@
     </div>
 
 </div>
-</div>
+
 
 
 </body>
