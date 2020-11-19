@@ -18,19 +18,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%
+        HttpSession httpSession = request.getSession();
+        if (httpSession != null) {
+            if (httpSession.getAttribute("traveler") != null) {
+                Traveler traveler = (Traveler) httpSession.getAttribute("traveler");
+                System.out.print("Hello, " + traveler + "  Welcome to ur Profile");
+            }else {
+                response.sendRedirect("index.jsp");
+            }
+        }
+    %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <!-- <link href="jsp.css" type="text/css" rel="stylesheet" /> -->
-    <script src="userprofile.js" type="text/javascript"></script>
     <style> <%@ include file="WEB-INF/css/footer.css" %></style>
+    <sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></sript>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/components/form.js"> </script>
+
+
+
     <% HttpSession session1 = (HttpSession) request.getSession();
         Traveler traveler;
         traveler= (Traveler) session1.getAttribute("Traveler"); %>
 
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnyRtUCJIj3MdcA2we04xgGr-EZj9SYY8&callback=initMap&libraries=&v=weekly"
-            defer
-    ></script>
+
     <script>
         var $data;
         var $latitude , $longitude;
@@ -415,10 +427,6 @@
 <body>
 
 
-<sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
-
-</sript>
-
 <div class="ui block header" id="header1" style="background-color: #18B7BE;">
     <div class=" ui center aligned header" style="color: #ffffff;">  Profile Page</div>
 
@@ -483,19 +491,19 @@
 
 
 
-                    <form action=''>
+                    <form class ="ui form" action="updatedetail" method="post" id="validate2">
                         <div class="three fields">
                             <div class="field">
                                 <label>First name</label>
-                                <input type="text" placeholder="First Name" name="firstname" value="${sessionScope.traveler.firstName}" >
+                                <input type="text" name="firstname" value="${sessionScope.traveler.firstName}" >
                             </div>
                             <div class="field">
                                 <label>Middle name</label>
-                                <input type="text" name="middlename" placeholder="Middle Name" value="${sessionScope.traveler.middleName}">
+                                <input type="text" name="middlename"  value="${sessionScope.traveler.middleName}">
                             </div>
                             <div class="field">
                                 <label>Last name</label>
-                                <input type="text" name="lastname" placeholder="Last Name" value="${sessionScope.traveler.lastName}">
+                                <input type="text" name="lastname"  value="${sessionScope.traveler.lastName}">
                             </div>
                         </div>
 
@@ -505,15 +513,15 @@
                             <div class="three fields">
                                 <div class="field">
                                     <label>State</label>
-                                    <input type="text" name="state" placeholder="Newyork" value="${sessionScope.traveler.address.state}">
+                                    <input type="text" name="state"  value="${sessionScope.traveler.address.state}">
                                 </div>
                                 <div class="field">
                                     <label>City</label>
-                                    <input type="text"  name="city" placeholder="Fairfied" value="${sessionScope.traveler.address.city}">
+                                    <input type="text"  name="city" value="${sessionScope.traveler.address.city}">
                                 </div>
                                 <div class="field">
                                     <label>Street</label>
-                                    <input type="text" name="street" placeholder="Burlington av" value="${sessionScope.traveler.address.street}">
+                                    <input type="text" name="street" value="${sessionScope.traveler.address.street}">
                                 </div>
                             </div>
                         </div>
@@ -523,12 +531,12 @@
                         <div class="three fields">
                             <div class="field">
                                 <label>Zip Code</label>
-                                <input type="text" name="zipcode" placeholder="12556" value="${sessionScope.traveler.address.zipcode}">
+                                <input type="text" name="zipcode" value="${sessionScope.traveler.address.zipcode}">
                             </div>
 
                             <div class="field">
                                 <label>Birth year</label>
-                                <input type="text" name="birthyear" placeholder="Year" value="${sessionScope.traveler.birthYear}">
+                                <input type="text" name="birthyear" value="${sessionScope.traveler.birthYear}">
                             </div>
                             <div class="field">
                                 <label>Gender</label>
@@ -542,9 +550,9 @@
 
                         <div class="one fields">
                             <div class="field">
-                                <button class="ui primary submit blue button left floated" name="btn2">
+                                <div class="ui primary submit blue button left floated" name="btn2">
                                     Update Details
-                                </button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -556,14 +564,15 @@
                         <div class="five field wide">
                             <label>Email</label>
                             <div class="ui left icon input">
-                                <input type="email" name="email" placeholder="abc@abc.com" value="${sessionScope.traveler.email}">
+                                <input type="email" name="email"  value="${sessionScope.traveler.email}" readonly>
                                 <i class="user icon"></i>
                             </div>
                         </div>
                     </div>
-                    <form action='' method="POST" id="validate1">
 
-                        <div class ="ui segment"> <h3 class="ui left aligned header">Change Passwod </h3></div>
+                    <form class="ui form" action='updatepassword' method="POST" id="validate1">
+
+                        <div class ="ui segment"> <h3 class="ui left aligned header">Change Password </h3></div>
                         <div class="one fields">
                             <div class="five field wide">
                                 <label>New Password</label>
@@ -589,8 +598,10 @@
                                     Update password
                                 </button>
                             </div>
+                            <div class="error message"><div>
+                            </div>
+                            </div>
                         </div>
-
                     </form>
 
 
@@ -615,106 +626,106 @@
                 <h4 class="ui left aligned header">Posts </h4>
             </div>
             <div class="ui relaxed divided items" id="postList">
-            <!-- Individual Posts goes here -->
-                            <div style="min-width: 35%;" class="ui centered card">
-                                <div class="content">
-                                    <div class="right floated meta">14h</div>
-                                    <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/kristy.png"> Elliot
-                                </div>
-                                <div class="image">
-                                    <img src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
-                                </div>
-                                <div class="content">
-                                    <div class="ui justified container">
-                                        <p>
-                                            This is the post text content and it is kjabfkvksljbavljbv jaljkvbaljvbhaj hkjklgjadhajlhvlkj kljaghkj  ghakjlgh kjh
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ut quidem corrupti adipisci, ipsa minus aliquam laboriosam ab voluptates pariatur blanditiis laborum ex ipsum saepe perferendis esse voluptatum non magnam.
+                <!-- Individual Posts goes here -->
+                <div style="min-width: 35%;" class="ui centered card">
+                    <div class="content">
+                        <div class="right floated meta">14h</div>
+                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/kristy.png"> Elliot
+                    </div>
+                    <div class="image">
+                        <img src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
+                    </div>
+                    <div class="content">
+                        <div class="ui justified container">
+                            <p>
+                                This is the post text content and it is kjabfkvksljbavljbv jaljkvbaljvbhaj hkjklgjadhajlhvlkj kljaghkj  ghakjlgh kjh
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ut quidem corrupti adipisci, ipsa minus aliquam laboriosam ab voluptates pariatur blanditiis laborum ex ipsum saepe perferendis esse voluptatum non magnam.
 
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="content">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
 
+                        <div class="ui grid">
+
+                            <div class="four wide column">
+                                <button class="circular ui icon button">
+                                    <i class="thumbs up icon"></i>
+                                </button>
+                                <label>17</label>
+                            </div>
+                            <div class="four wide column">
+                                <button class="circular ui icon button">
+                                    <i class="thumbs down icon"></i>
+                                </button>
+
+
+                                <label>1</label>
+                            </div>
+                            <div class="four wide column">
+                                <button class="circular ui icon button">
+                                    <i class="comments icon"></i>
+                                </button>
+                                <!-- <a> comments</a> -->
+
+                            </div>
+                            <div class="four wide column">
+                                <button class="ui icon button">
+                                    <i class="map marker alternate red icon"></i>
+                                    <!-- Location -->
+                                </button>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="content">
+                        <div class="ui items">
+                            <div class="item">
+                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
+                                <div class="middle aligned content">
                                     <div class="ui grid">
-
-                                        <div class="four wide column">
-                                            <button class="circular ui icon button">
-                                                <i class="thumbs up icon"></i>
-                                            </button>
-                                            <label>17</label>
+                                        <div class="eleven wide column">
+                                            <label>Traveler Name</label>
+                                            <a class="header">12 Years a Slave</a>
                                         </div>
-                                        <div class="four wide column">
-                                            <button class="circular ui icon button">
-                                                <i class="thumbs down icon"></i>
-                                            </button>
-
-
-                                            <label>1</label>
-                                        </div>
-                                        <div class="four wide column">
-                                            <button class="circular ui icon button">
-                                                <i class="comments icon"></i>
-                                            </button>
-                                            <!-- <a> comments</a> -->
-
-                                        </div>
-                                        <div class="four wide column">
-                                            <button class="ui icon button">
-                                                <i class="map marker alternate red icon"></i>
-                                                <!-- Location -->
-                                            </button>
-
-
+                                        <div class="five wide column">
+                                            <div class="Right floated left aligned column">12/02/2020</div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="content">
-                                    <div class="ui items">
-                                        <div class="item">
-                                            <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
-                                            <div class="middle aligned content">
-                                                <div class="ui grid">
-                                                    <div class="eleven wide column">
-                                                        <label>Traveler Name</label>
-                                                        <a class="header">12 Years a Slave</a>
-                                                    </div>
-                                                    <div class="five wide column">
-                                                        <div class="Right floated left aligned column">12/02/2020</div>
-                                                    </div>
-                                                </div>
-                                                <p>
-                                                    This is a comment section for users to comment on a post.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
-                                            <div class="middle aligned content">
-                                                <div class="ui grid">
-                                                    <div class="eleven wide column">
-                                                        <label>Traveler Name</label>
-                                                        <a class="header">Name</a>
-                                                    </div>
-                                                    <div class="five wide column">
-                                                        <div class="Right floated left aligned column">12/02/2020</div>
-                                                    </div>
-                                                </div>
-                                                <p>
-                                                    A description which may flow for several lines and give context to the content.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="content">
-                                    <div class="ui large transparent left icon input">
-                                        <i class="comment outline icon"></i>
-                                        <input type="text" placeholder="Add Comment...">
-                                    </div>
+                                    <p>
+                                        This is a comment section for users to comment on a post.
+                                    </p>
                                 </div>
                             </div>
+                            <div class="item">
+                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
+                                <div class="middle aligned content">
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <label>Traveler Name</label>
+                                            <a class="header">Name</a>
+                                        </div>
+                                        <div class="five wide column">
+                                            <div class="Right floated left aligned column">12/02/2020</div>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        A description which may flow for several lines and give context to the content.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="ui large transparent left icon input">
+                            <i class="comment outline icon"></i>
+                            <input type="text" placeholder="Add Comment...">
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -723,6 +734,89 @@
     </div>
 </div>
 </div>
+</body>
+<script>
+    $(document).ready(function() {
+        $('#validate2')
+            .form({
+                fields: {
+                    firstname: 'empty',
+                    middlename: 'empty',
+                    lastname: 'empty',
+                    state: 'empty',
+                    city: 'empty',
+                    street: 'empty',
+                    zipcode: 'empty'
+                }
+            }, {
+                onSuccess: function (e) {
+                    e.prventDefault(e);
+                }
+            });
+    })
+    $(document).ready(function(){
+        $('#validate1')
+            .form({
+                    fields: {
+                        password: {
+                            identifier: 'password',
+                            rules: [
+                                {
+                                    type   : 'empty',
+                                    prompt : 'Please enter your Password'
+                                },
+                                {
+                                    type   : 'minLength[6]',
+                                    prompt : 'min length is 6'
+                                },
+                                {
+                                    type   : 'regExp',
+                                    value  :  '[a-z]',
+                                    prompt : 'please enter at least one small letter'
+                                },
+                                {
+                                    type   : 'regExp',
+                                    value  :  '[A-Z]',
+                                    prompt : 'please enter at least one capital letter'
+                                },
+                                {
+                                    type   : 'regExp',
+                                    value  :  '[0-9]',
+                                    prompt : 'please enter at least on one number'
+                                }
+                            ]
+                        },
+                        confirm: {
+                            identifier: 'confirm',
+                            rules: [
+                                {
+                                    type   : 'match[password]',
+                                    prompt : 'Your Password should mathch'
+                                }
+                            ]
+                        },
+                        birthyear: {
+                            identifier: 'birthyear',
+                            rules: [
+                                {
+                                    type   : 'empty',
+                                    prompt : 'Please enter your Birthyear'
+                                }
+                            ]
+                        }
+
+                    }
+
+                }
+                ,{
+                    onSuccess : function(e){
+                        e.prventDefault(e);
+                        alert();
+                    }
+                }
+            )
+    });
+</script>
 
 <footer class="footer-distributed" style="background-color:#178CA4">
 
@@ -761,6 +855,7 @@
 
 
 
-</body>
-</html>
 
+
+
+</html>

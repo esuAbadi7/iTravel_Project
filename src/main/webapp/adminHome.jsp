@@ -57,7 +57,7 @@
         $(document).ready(function() {
 
             load_Posts();
-            load_friendSuggestion();
+            load_unhealthywords();
             $('#postBtn').on("click",do_post);
             $('#map').hide();
             $('#postSuccess').hide();
@@ -215,35 +215,20 @@
             )
         }
 
-        function load_friendSuggestion(){
-            $.get('follow',
+        function load_unhealthywords(){
+            $.post('unhealtyWords',
                 function (responseJson) {
-                    var $followContainer = $('#followContainer');
+                    var $followContainer = $('#unhealthyContainer');
                     $followContainer.find('.item').remove();
                     var $data;
 
                     $.each(responseJson, function (key, value) {
 
-                        console.log(value.firstName);
-                        $data = value;
-                        console.log(value.travelerId);
-                        htmlContent = '<div class="item">' +
-                            '                <img id="followImg'+value.travelerId+'" class="ui tiny image" src="'+value.profilePicUrl+'" alt="profile Image">' +
-                            '                <div class="middle aligned content">'+value.firstName+' '+ value.middleName +' '+ value.lastName+'\n'+
-                            '                    <button id="followBtn'+value.travelerId+'" data-tId="'+value.travelerId+'" class="blue button right floated"> Follow </button>\n' +
-                            '                </div>\n' +
-                            '            </div>';
-
-
+                        console.log(value);
+                        htmlContent = '<div class="item">' +value+ '</div>';
 
                         $followContainer.append(htmlContent);
 
-
-                        if($data.profilePicUrl.length == 0){
-                            $("#followImg"+$data.travelerId).attr('src','https://semantic-ui.com/examples/assets/images/wireframe/image-text.png');
-                        }
-
-                        $("#followBtn"+$data.travelerId).on('click',followTraveler);
 
                     })
                 })
@@ -692,7 +677,7 @@
                 </div>
 
 
-                <div class="ui segment">
+                <div id="unhealthyContainer" class="ui segment">
                     <h4 > Unhealthy words</h4>
                 </div>
                 <input class = "ui segment" type="text" id="inputlen" size=80%">

@@ -64,9 +64,25 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.itravel.controller.LogoutServlet</servlet-class>
     </servlet>
-    
-    
-    
+    <servlet>
+        <servlet-name>UserProfilServlet</servlet-name>
+        <servlet-class>com.itravel.controller.UserProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePasswordServlet </servlet-name>
+        <servlet-class>com.itravel.controller.UpdatePasswordServlet</servlet-class>
+    </servlet>
+
+
+
+    <servlet-mapping>
+        <servlet-name>UserProfilServlet</servlet-name>
+        <url-pattern>/updatedetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePasswordServlet</servlet-name>
+        <url-pattern>/updatepassword</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>

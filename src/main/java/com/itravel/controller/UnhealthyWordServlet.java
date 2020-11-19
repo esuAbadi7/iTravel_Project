@@ -2,6 +2,7 @@ package com.itravel.controller;
 
 import com.google.gson.Gson;
 import com.itravel.dao.PostDao;
+import com.itravel.dao.UnhealthyWordDao;
 import com.itravel.model.Post;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -15,8 +16,25 @@ import java.util.Map;
 
 public class UnhealthyWordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Return unhealthy words
+        UnhealthyWordDao unhealthyWordDao = new UnhealthyWordDao();
+//<<<<<<< HEAD
+        List<String> unhealthyWordsList = unhealthyWordDao.getAllUnhealthyWords();
+//=======
+//        List<Post> postList = postDao.getAllPosts();
+////        postDao.getUnhealthyPosts()
+//>>>>>>> 17020a395296189e1fbebd3e771da82f11d23b14
 
+        Map<String, String> unhealthyWords = new LinkedHashMap<>();
+        for(String words: unhealthyWordsList){
+            unhealthyWords.put(words,words);
+        }
 
+        String json = null;
+        json = new Gson().toJson(unhealthyWords);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
 
     }
 
