@@ -1,6 +1,8 @@
 <%@ page import="com.itravel.model.Traveler" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.itravel.dao.TravelerDao" %><%--
+<%@ page import="com.itravel.dao.TravelerDao" %>
+<%@ page import="com.itravel.model.User" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %><%--
   Created by IntelliJ IDEA.
   User: esuab
   Date: 11/15/2020
@@ -10,6 +12,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+        HttpSession httpSession = request.getSession();
+        if (httpSession != null) {
+            if (httpSession.getAttribute("admin") != null) {
+                User admin = (User) httpSession.getAttribute("traveler");
+                System.out.print("Hello, " + admin + "  Welcome to ur Profile");
+            }else {
+                response.sendRedirect("index.jsp");
+            }
+        }
+    %>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <%--    <link href="jsp.css" type="text/css" rel="stylesheet" />--%>

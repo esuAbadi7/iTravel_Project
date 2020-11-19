@@ -1,4 +1,5 @@
-<%--
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="com.itravel.model.User" %><%--
   Created by IntelliJ IDEA.
   User: esuab
   Date: 11/16/2020
@@ -10,6 +11,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%
+        HttpSession httpSession = request.getSession();
+        if (httpSession != null) {
+            if (httpSession.getAttribute("admin") != null) {
+                User admin = (User) httpSession.getAttribute("traveler");
+                System.out.print("Hello, " + admin + "  Welcome to ur Profile");
+            }else {
+                response.sendRedirect("index.jsp");
+            }
+        }
+    %>
     <title> iTravel Home Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link href="home.css" type="text/css" rel="stylesheet" />

@@ -11,6 +11,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%
+        HttpSession httpSession = request.getSession();
+        if (httpSession != null) {
+            if (httpSession.getAttribute("traveler") != null) {
+                Traveler traveler = (Traveler) httpSession.getAttribute("traveler");
+                System.out.print("Hello, " + traveler + "  Welcome to ur Profile");
+            }else {
+                response.sendRedirect("index.jsp");
+            }
+        }
+    %>
+
     <title> iTravel Home Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link href="home.css" type="text/css" rel="stylesheet" />
@@ -502,17 +514,7 @@
 ></script>
 
 
-<%
-    HttpSession httpSession = request.getSession();
-    if (httpSession != null) {
-        if (httpSession.getAttribute("traveler") != null) {
-            Traveler traveler = (Traveler) httpSession.getAttribute("traveler");
-            System.out.print("Hello, " + traveler + "  Welcome to ur Profile");
-        }
-    }else {
-        response.sendRedirect("index");
-    }
-%>
+
 
 <div class="ui block header" id="header1" style="background-color: #18B7BE;">
     <div class=" ui center aligned header" style="color: #ffffff;">Welcome ${sessionScope.traveler.firstName}</div>

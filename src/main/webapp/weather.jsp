@@ -1,4 +1,5 @@
-<%--
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="com.itravel.model.Traveler" %><%--
   Created by IntelliJ IDEA.
   User: esuab
   Date: 11/19/2020
@@ -8,6 +9,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <<html>
 <head>
+    <%
+        HttpSession httpSession = request.getSession();
+        if (httpSession != null) {
+            if (httpSession.getAttribute("traveler") != null) {
+                Traveler traveler = (Traveler) httpSession.getAttribute("traveler");
+                System.out.print("Hello, " + traveler + "  Welcome to ur Profile");
+            }else {
+                response.sendRedirect("index.jsp");
+            }
+        }
+    %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
     <style> <%@ include file="WEB-INF/css/weather.css" %></style>
