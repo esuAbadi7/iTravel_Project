@@ -35,7 +35,7 @@
 </sript>
 
 <div class="ui block header" id="header1" style="background-color: #18B7BE;">
-    <div class=" ui center aligned header" style="color: #ffffff;"> ${sessionScope.traveler.firstName} Profile Page</div>
+    <div class=" ui center aligned header" style="color: #ffffff;">  Profile Page</div>
 
     <div class="ui pointing menu middlebar" style="background-color: #178CA4;" >
         <a href="travelerHomePage.jsp" class="item" style="color: #F9F7F0;">
@@ -53,12 +53,12 @@
 <div class="ui container">
     <div class="ui segments">
         <div class="ui segment">
-            <h3 class="ui center aligned header">User Profile </h3>
+            <h3 class="ui center aligned header">${sessionScope.traveler.firstName} Profile </h3>
         </div>
 
         <div class ="ui container" >
             <div class="ui segment form">
-                <div class = "colunm">
+                <div class = "column">
 
                     <form action=''>
 
@@ -436,14 +436,15 @@
 </div>
 </div>
 
-<footer>
-    <footer class="footer-distributed" style="background-color:#178CA4">
+<footer class="footer-distributed" style="background-color:#178CA4">
 
-        <div class="footer-left">
+    <div class="ui three column grid container">
+        <div class="column" style="background-color:#178CA4">
+
             <h3>iTraveler<span></span></h3>
-        </div>
 
-        <div class="footer-center">
+        </div>
+        <div class="column">
 
             <div>
                 <i class="fa fa-map-marker"></i>
@@ -454,16 +455,19 @@
                 <i class="fa fa-phone"></i>
                 <p>+1.240.505.9711</p>
             </div>
+
         </div>
-        <div class="footer-right" >
-            <a href="#"><i class="facebook square icon" style="color:rgb(19, 19, 31);"></i></a>
-            <a href="#"><i class="linkedin icon" style="color:rgb(19, 19, 31);"></i></a>
-            <a href="#"><i class="twitter icon" style="color:rgb(19, 19, 31);"></i></a>
-            <a href="#"><i class="github icon" style="color:rgb(19, 19, 31);"></i></a>
+        <div class="column">
+
+            <div class="footer-right" >
+                <a href="#"><i class="facebook square icon" style="color:rgb(19, 19, 31);"></i></a>
+                <a href="#"><i class="linkedin icon" style="color:rgb(19, 19, 31);"></i></a>
+                <a href="#"><i class="twitter icon" style="color:rgb(19, 19, 31);"></i></a>
+                <a href="#"><i class="github icon" style="color:rgb(19, 19, 31);"></i></a>
+            </div> -->
+
         </div>
-        </div>
-        </div>
-    </footer>
+    </div>
 
 </footer>
 
