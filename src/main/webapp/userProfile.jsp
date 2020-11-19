@@ -432,6 +432,10 @@
         <a href="weather.jsp" class="item" style="color: #F9F7F0;">
             Weather Service
         </a>
+
+        <a href="logout" class="right floated item" style="color: #F9F7F0;">
+            Logout
+        </a>
     </div>
 </div>
 

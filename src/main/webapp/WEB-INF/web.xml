@@ -60,8 +60,18 @@
         <servlet-name>DeletePostServlet</servlet-name>
         <servlet-class>com.itravel.controller.DeletePostServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.itravel.controller.LogoutServlet</servlet-class>
+    </servlet>
     
     
+    
+    
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignupServlet</servlet-name>
         <url-pattern>/signup</url-pattern>

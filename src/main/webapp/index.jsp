@@ -13,14 +13,7 @@
     <sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></sript>
 </head>
 <body>
-<% Object object = request.getAttribute("errMsg");
-    if(object == null){
 
-    }else{
-
-    }
-
-%>
 
 <header>
 

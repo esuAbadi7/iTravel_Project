@@ -20,7 +20,7 @@
 <body>
 
 <div class="ui block header" id="header1" style="background-color: #18B7BE;">
-    <div class=" ui center aligned header" style="color: #ffffff;">Traveler </div>
+    <div class=" ui center aligned header" style="color: #ffffff;"> Weather Info </div>
 
     <div class="ui pointing menu middlebar" style="background-color: #178CA4;" >
         <a href="travelerHomePage.jsp" class=" item" style="color: #F9F7F0;">
@@ -31,6 +31,10 @@
         </a>
         <a href="#" class="item" style="color: #F9F7F0;">
             Weather Service
+        </a>
+
+        <a href="logout" class="right floated item" style="color: #F9F7F0;">
+            Logout
         </a>
     </div>
 </div>

@@ -1,4 +1,5 @@
-<%--
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="com.itravel.model.Traveler" %><%--
   Created by IntelliJ IDEA.
   User: esuab
   Date: 11/16/2020
@@ -501,6 +502,18 @@
 ></script>
 
 
+<%
+    HttpSession httpSession = request.getSession();
+    if (httpSession != null) {
+        if (httpSession.getAttribute("traveler") != null) {
+            Traveler traveler = (Traveler) httpSession.getAttribute("traveler");
+            System.out.print("Hello, " + traveler + "  Welcome to ur Profile");
+        } else {
+            response.sendRedirect("index.jsp");
+        }
+    }
+%>
+
 <div class="ui block header" id="header1" style="background-color: #18B7BE;">
     <div class=" ui center aligned header" style="color: #ffffff;">Welcome ${sessionScope.traveler.firstName}</div>
 
@@ -514,6 +527,11 @@
         <a href="weather.jsp" class="item" style="color: #F9F7F0;">
             Weather Service
         </a>
+
+        <a href="logout" class="right floated item" style="color: #F9F7F0;">
+            Logout
+        </a>
+
     </div>
 </div>
 
@@ -529,17 +547,17 @@
 
 <div class="ui centered grid">
     <div class="ui icon input"  id="yourmind">
-        <form id="the-form" action="addPost" enctype="multipart/form-data">
+<%--        <form id="the-form" action="addPost" enctype="multipart/form-data">--%>
         <textarea id="postText" name="textarea" cols="40" rows="2" placeholder=" What is on your mind...?"></textarea>
 
         <button type="submit" id="postBtn" data-travelerId="${sessionScope.traveler.travelerId}"> post</button>
-        <div class="ui right floated">
-            <label for="image" class="ui icon button btn-file">
-                <i class="paperclip icon"></i>
-                <input type="file" id="image" name="image" accept="image/*" style="display: none">
-            </label>
-        </div>
-        </form>
+<%--        <div class="ui right floated">--%>
+<%--            <label for="image" class="ui icon button btn-file">--%>
+<%--                <i class="paperclip icon"></i>--%>
+<%--                <input type="file" id="image" name="image" accept="image/*" style="display: none">--%>
+<%--            </label>--%>
+<%--        </div>--%>
+<%--        </form>--%>
 
     </div>
 

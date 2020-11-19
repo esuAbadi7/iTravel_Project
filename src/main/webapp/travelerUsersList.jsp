@@ -146,48 +146,6 @@
             $status = false;
         }
 
-        // var settings = {
-        //     "async": true,
-        //     "crossDomain": true,
-        //     "url": "https://api.about.com/upload",
-        //     "method": "POST",
-        //     "headers": {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/x-www-form-urlencoded",
-        //         "Cache-Control": "no-cache",
-        //         "Postman-Token": "random-postman-token"
-        //     },
-        //     "processData": false,
-        //     "contentType": false,
-        //     "mimeType": "multipart/form-data",
-        //     "data": form
-        // }
-
-        // var settings = {
-        //
-        //     "url": "activateUser",
-        //     "method": "GET",
-        //      "async": "false",
-        //     "cache": "false",
-        //     "processData": false,
-        //     "contentType": false,
-        //     "mimeType": "multipart/form-data",
-        //     "data": {
-        //             travelerEmail : $traveler_email,
-        //             status: $status
-        //         }
-        // }
-        // $.ajax({
-        //     url: 'php/upload.php',
-        //     data: $('#file').attr('files'),
-        //     cache: false,
-        //     contentType: 'multipart/form-data',
-        //     processData: false,
-        //     type: 'GET'}).done(
-        // // $.ajax(settings).done(function (response) {
-        // //     console.log(response);
-        // // });
-        // //
         $.post('activateUser', {
             travelerEmail : $traveler_email,
             status: $status
@@ -212,24 +170,26 @@
 
 </script>
 
-<div class="ui pointing menu">
-    <a class="item">
-        Home
-    </a>
-    <a href="#" class="active item">
-        Travelers Users
-    </a>
-    <a class="item">
-        Weather Service
-    </a>
-    <div class="right menu">
+<div class="ui block header" id="header1" style="background-color: #18B7BE;">
+    <div class=" ui center aligned header" style="color: #ffffff;"> Weather Info </div>
 
-        <a class="item">
-            <i class="bell icon"></i>
+    <div class="ui pointing menu middlebar" style="background-color: #178CA4;" >
+        <a href="adminHome.jsp" class=" item" style="color: #F9F7F0;">
+            Home
         </a>
-
+        <a href="#" class="item" style="color: #F9F7F0;">
+            Travelers List
+        </a>
+        <a href="adminWeather.jsp" class="item" style="color: #F9F7F0;">
+            Weather Service
+        </a>
+        <a href="index.jsp" class="right floated item" style="color: #F9F7F0;">
+            Logout
+        </a>
     </div>
 </div>
+
+
 
 <div class="ui container">
     <div class="ui segments">
@@ -320,8 +280,35 @@
 
     </div>
 
+
 </div>
 
+<footer class="footer-distributed" style="background-color:#178CA4">
+
+    <div class="footer-left">
+        <h3>iTraveler<span></span></h3>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>1000 N. 4th Street</span> Fairfield IA, 52557</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+1.240.505.9711</p>
+        </div>
+    </div>
+    <div class="footer-right" >
+        <a href="#"><i class="facebook square icon" style="color:rgb(19, 19, 31);"></i></a>
+        <a href="#"><i class="linkedin icon" style="color:rgb(19, 19, 31);"></i></a>
+        <a href="#"><i class="twitter icon" style="color:rgb(19, 19, 31);"></i></a>
+        <a href="#"><i class="github icon" style="color:rgb(19, 19, 31);"></i></a>
+    </div>
+    </div>
+</footer>
 
 
 </body>

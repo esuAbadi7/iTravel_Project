@@ -29,8 +29,10 @@ public class LoginServlet extends HttpServlet {
         if(user == null){
             String errMsg = "Username or Password is incorrect!";
             request.setAttribute("errMsg",errMsg);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request,response);
+//            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//            rd.forward(request,response);
+
+            response.sendRedirect("index.jsp");
             //Return Error Mesa
         }else{
             if(user.isActive()){
@@ -41,21 +43,25 @@ public class LoginServlet extends HttpServlet {
                     TravelerDao travelerDao = new TravelerDao();
                     Traveler traveler = travelerDao.getTravelerUsingEmail(email);
                     session.setAttribute("traveler", traveler);
-                    RequestDispatcher rd = request.getRequestDispatcher("travelerHomePage.jsp");
-                    rd.forward(request,response);
+//                    RequestDispatcher rd = request.getRequestDispatcher("travelerHomePage.jsp");
+//                    rd.forward(request,response);
+
+                    response.sendRedirect("travelerHomePage.jsp");
 
                 }else if(Role.ADMIN == user.getRole()){
                     HttpSession session = request.getSession();
                     session.setAttribute("admin",user);
-                    RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
-                    rd.forward(request,response);
+//                    RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
+//                    rd.forward(request,response);
+                    response.sendRedirect("adminHome.jsp");
                 }
 
             }else{
                 String errMsg = "Account is not Active!";
                 request.setAttribute("errMsg",errMsg);
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request,response);
+//                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//                rd.forward(request,response);
+                response.sendRedirect("index.jsp");
             }
 
 
