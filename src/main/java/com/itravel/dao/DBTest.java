@@ -98,6 +98,7 @@ public class DBTest {
         System.out.println(unhealthyWordDao.deleteUnhealthyWord("race"));
         System.out.println(unhealthyWordDao.addUnhealthyWord("badWord"));
         System.out.println(unhealthyWordDao.getAllUnhealthyWords());
+        System.out.println(postDao.deletePost("45986"));
 
 
 

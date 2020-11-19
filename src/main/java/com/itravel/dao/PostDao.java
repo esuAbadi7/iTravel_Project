@@ -272,6 +272,8 @@ public class PostDao {
     }
 
     public boolean deletePost(String postId) {
+
+        boolean result = deletePostComments(postId);
         String sql = "delete from post where id= ?";
 
 
@@ -279,7 +281,7 @@ public class PostDao {
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, postId);
-            ResultSet resultSet = st.executeQuery();
+            st.executeUpdate();
 
             return true;
 
@@ -288,6 +290,27 @@ public class PostDao {
             return false;
         }
     }
+
+    public boolean deletePostComments(String postId) {
+
+//        delete from comment where post_id= 76038
+        String sql = "delete from comment where post_id= ?";
+
+
+        try (Connection con = ConnectionManager.getConnection()) {
+
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, postId);
+            st.executeUpdate();
+
+            return true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+    }
+
 
 
 

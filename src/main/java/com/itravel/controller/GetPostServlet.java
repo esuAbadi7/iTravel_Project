@@ -46,6 +46,26 @@ public class GetPostServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Traveler traveler = (Traveler) request.getSession().getAttribute("traveler");
+
+        PostDao postDao = new PostDao();
+//<<<<<<< HEAD
+        List<Post> postList = postDao.getTravelerPosts(traveler.getTravelerId());
+//=======
+//        List<Post> postList = postDao.getAllPosts();
+////        postDao.getUnhealthyPosts()
+//>>>>>>> 17020a395296189e1fbebd3e771da82f11d23b14
+
+        Map<String, Post> allTravelerPosts = new LinkedHashMap<>();
+        for(Post post: postList){
+            allTravelerPosts.put(post.getPostId(),post);
+        }
+
+        String json = null;
+        json = new Gson().toJson(allTravelerPosts);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
 
 
     }

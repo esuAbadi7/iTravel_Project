@@ -76,6 +76,9 @@ public class CommentDao {
 
 
 
+
+
+
     private List<Comment> populateCommentList(ResultSet rs) throws SQLException {
         List<Comment> list = new ArrayList<>();
         String commentId;
