@@ -525,14 +525,14 @@
     <div class=" ui center aligned header" style="color: #ffffff;">Welcome ${sessionScope.traveler.firstName}</div>
 
     <div class="ui pointing menu middlebar" style="background-color: #178CA4;" >
-        <a class=" item" style="color: #F9F7F0;">
+        <a href="#" class="active item" style="color: #F9F7F0;">
             Home
         </a>
-        <a class="item" style="color: #F9F7F0;">
+        <a href="userProfile.jsp" class="item" style="color: #F9F7F0;">
             Profile
         </a>
         <a class="item" style="color: #F9F7F0;">
-            Requests
+            Weather Service
         </a>
     </div>
 </div>
