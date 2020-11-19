@@ -508,9 +508,9 @@
         if (httpSession.getAttribute("traveler") != null) {
             Traveler traveler = (Traveler) httpSession.getAttribute("traveler");
             System.out.print("Hello, " + traveler + "  Welcome to ur Profile");
-        } else {
-            response.sendRedirect("index.jsp");
         }
+    }else {
+        response.sendRedirect("index");
     }
 %>
 
