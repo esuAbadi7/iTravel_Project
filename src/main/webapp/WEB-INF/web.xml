@@ -6,13 +6,15 @@
   <display-name>Archetype Created Web Application</display-name>
 
 
-
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.itravel.controller.LoginServlet</servlet-class>
     </servlet>
+<!--<<<<<<< HEAD-->
 
 
+<!--=======-->
+<!--&gt;>>>>>> 17020a395296189e1fbebd3e771da82f11d23b14-->
 
     <servlet>
         <servlet-name>GetTravelerServlet</servlet-name>
@@ -20,17 +22,20 @@
     </servlet>
 
     <servlet>
-        <servlet-name>ActivateUserServlet</servlet-name>
-        <servlet-class>com.itravel.controller.ActivateUserServlet</servlet-class>
+        <servlet-name>ErrorHandler</servlet-name>
+        <servlet-class>com.itravel.controller.ErrorHandler</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>GetPostServlet</servlet-name>
         <servlet-class>com.itravel.controller.GetPostServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>AddPostServlet</servlet-name>
         <servlet-class>com.itravel.controller.AddPostServlet</servlet-class>
     </servlet>
+<!--<<<<<<< HEAD-->
     <servlet>
         <servlet-name>GetCommentServlet</servlet-name>
         <servlet-class>com.itravel.controller.CommentServlet</servlet-class>
@@ -83,17 +88,52 @@
         <servlet-name>GetCommentServlet</servlet-name>
         <url-pattern>/comment</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddPostServlet</servlet-name>
-        <url-pattern>/addPost</url-pattern>
+<!--=======-->
+
+    <servlet>
+        <servlet-name>ActivateUserServlet</servlet-name>
+        <servlet-class>com.itravel.controller.ActivateUserServlet</servlet-class>
+    </servlet>
+
+<!--&gt;>>>>>> 17020a395296189e1fbebd3e771da82f11d23b14-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>LoginServlet</servlet-name>-->
+<!--        <url-pattern>/login</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>GetTravelerServlet</servlet-name>-->
+<!--        <url-pattern>/getTraveler</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+     <servlet-mapping>
+        <servlet-name>ErrorHandler</servlet-name>
+        <url-pattern>/ErrorHandler</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetPostServlet</servlet-name>
-        <url-pattern>/postAction</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ActivateUserServlet</servlet-name>
         <url-pattern>/activateUser</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddPostServlet</servlet-name>
+        <url-pattern>/addPost</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GetPostServlet</servlet-name>
+        <url-pattern>/postAction</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
 
 </web-app>

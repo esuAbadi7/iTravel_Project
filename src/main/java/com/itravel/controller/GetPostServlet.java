@@ -24,7 +24,12 @@ public class GetPostServlet extends HttpServlet {
         Traveler traveler = (Traveler) request.getSession().getAttribute("traveler");
 
         PostDao postDao = new PostDao();
+//<<<<<<< HEAD
         List<Post> postList = postDao.getAllPostFeed(traveler.getTravelerId());
+//=======
+//        List<Post> postList = postDao.getAllPosts();
+////        postDao.getUnhealthyPosts()
+//>>>>>>> 17020a395296189e1fbebd3e771da82f11d23b14
 
         Map<String, Post> allPostFeed = new LinkedHashMap<>();
         for(Post post: postList){
