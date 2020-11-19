@@ -8,6 +8,7 @@
     <link href = "welcome.js" type="text/javascript" />
     <link href = "welcome.css" type="text/css" rel="stylesheet">
 
+    <sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></sript>
 </head>
 <body>
 <% Object object = request.getAttribute("errMsg");
@@ -18,9 +19,20 @@
     }
 
 %>
-<sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></sript>
+
 <header>
-    <h1 class="ui centered big header" id="head">Welcome to iTraveler</h1>
+
+
+    <div class="ui block header" id="header1" style="background-color: #18B7BE;">
+        <div class=" ui center aligned header" style="color: #ffffff;">
+            <h1 class="ui centered big header" >Welcome to iTraveler</h1>
+        </div>
+        <div>
+
+        </div>
+
+    </div>
+
 </header>
 <div class="ui container">
     <div class="ui segments">
@@ -44,19 +56,26 @@
                                     <i class="lock icon"></i>
                                 </div>
                             </div>
+                            <% String  error = (String) request.getAttribute("errMsg") ;
+                            if(error != null){ %>
                             <div class="ui error message">
                                 <p> <%=request.getAttribute("errMsg")%> </p>
                             </div>
-                            <div class="ui blue submit button">
-                                <input type="submit" value="Login">
-                            </div>
+                            <%} %>
+
+<%--                            <div class="ui blue submit button">--%>
+                                <input class="ui blue submit button" type="submit" value="Login">
+<%--                            </div>--%>
                         </form>
                     </div>
                     <div class="middle aligned column">
-                        <div class="ui big button">
-                            <i class="signup icon"></i>
-                            Sign Up
-                        </div>
+                        <form action="Signup.jsp">
+                            <button class="ui big button">
+                                <i class="signup icon"></i>
+                                Sign Up
+                            </button>
+                        </form>
+
                     </div>
                 </div>
                 <div class="ui vertical divider">
@@ -98,10 +117,38 @@
 
 
 </body>
-<footer>
-    <p> This is Footer. </p>
-    <p>Are you deactivated? Do you want to send Request?</p>
-    <p>Copy right 2020 Fairfield IA 52557 United States</p>
+<footer class="footer-distributed" style="background-color:#178CA4">
+
+    <div class="ui three column grid container">
+        <div class="column" style="background-color:#178CA4">
+
+            <h3>iTraveler<span></span></h3>
+
+        </div>
+        <div class="column">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>1000 N. 4th Street</span> Fairfield IA, 52557</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+1.240.505.9711</p>
+            </div>
+
+        </div>
+        <div class="column">
+
+            <div class="footer-right" >
+                <a href="#"><i class="facebook square icon" style="color:rgb(19, 19, 31);"></i></a>
+                <a href="#"><i class="linkedin icon" style="color:rgb(19, 19, 31);"></i></a>
+                <a href="#"><i class="twitter icon" style="color:rgb(19, 19, 31);"></i></a>
+                <a href="#"><i class="github icon" style="color:rgb(19, 19, 31);"></i></a>
+            </div> -->
+
+        </div>
+    </div>
 
 </footer>
 

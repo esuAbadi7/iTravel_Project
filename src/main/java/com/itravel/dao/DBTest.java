@@ -45,7 +45,7 @@ public class DBTest {
 //
         Traveler traveler = new Traveler("49460","Solomon","Kassa","Mekonnen","Male",1980,"solkassa@gmail.com","solkassa",true,Role.USER, address1,"","");
 
-        //        TravelerDao travelerDao = new TravelerDao();
+                TravelerDao travelerDao = new TravelerDao();
 ////        travelerDao.addTraveler(traveler);
 //        System.out.println(travelerDao.getAllTraveler());
 //
@@ -73,9 +73,33 @@ public class DBTest {
 //        System.out.println(d);
         Location location = new Location(123,123);
 
-        Post post = new Post("Post Test", LocalDateTime.now(), "", true, traveler, location);
+//        Post post = new Post("Post Test", LocalDateTime.now(), "", true, traveler, location);
+//
+//        boolean result = postDao.addPost(post);
 
-        boolean result = postDao.addPost(post);
+//        System.out.println(postDao.getAllPostFeed("trav1244"));
+//        System.out.println(postDao.getTravelerPosts("trav1244"));
+//        for(Post posts: postDao.searchPostbyUserOrPost("trav1244","Hi")){
+//            System.out.println(posts);
+//        }
+
+        System.out.println(postDao.updatePostDislikes("19081",2));
+        System.out.println(postDao.updatePostLikes("24210",6));
+        System.out.println(postDao.getPost("19081"));
+        System.out.println(postDao.getPostLikes("19081"));
+        System.out.println(postDao.getPostDislikes("19081"));
+
+//        System.out.println("Travelers that are not followed by  solkassa");
+//        for(Traveler travelerNotFollowed: travelerDao.getTravelersNotFollowedBy("49460")){
+//            System.out.println(travelerNotFollowed);
+//        }
+
+        UnhealthyWordDao unhealthyWordDao = new UnhealthyWordDao();
+        System.out.println(unhealthyWordDao.deleteUnhealthyWord("race"));
+        System.out.println(unhealthyWordDao.addUnhealthyWord("badWord"));
+        System.out.println(unhealthyWordDao.getAllUnhealthyWords());
+
+
 
 
     }

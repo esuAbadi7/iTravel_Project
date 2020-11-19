@@ -85,14 +85,11 @@
             $.get('getTraveler', {
                 status : $activeStatus
             }, function(responseJson) {
-                // var $select = $('#states');
-                // $select.find('option').remove();
+
                 var $select = $('#travelersListContainer');
                 $select.find('.item').remove();
                 $.each(responseJson, function(key, value) {
-                    // $('<option>').val(key).text(value).appendTo($select);
-                    // $('.item').html(key).appendTo($select);
-                    // const data = JSON.parse(value);
+
                     $data = value;
                     html = '<div id="'+value.travelerId+'"class="item"> ' +
                         '<a href="#" class="ui small circular image"> ' +
@@ -149,10 +146,53 @@
             $status = false;
         }
 
+        // var settings = {
+        //     "async": true,
+        //     "crossDomain": true,
+        //     "url": "https://api.about.com/upload",
+        //     "method": "POST",
+        //     "headers": {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/x-www-form-urlencoded",
+        //         "Cache-Control": "no-cache",
+        //         "Postman-Token": "random-postman-token"
+        //     },
+        //     "processData": false,
+        //     "contentType": false,
+        //     "mimeType": "multipart/form-data",
+        //     "data": form
+        // }
+
+        // var settings = {
+        //
+        //     "url": "activateUser",
+        //     "method": "GET",
+        //      "async": "false",
+        //     "cache": "false",
+        //     "processData": false,
+        //     "contentType": false,
+        //     "mimeType": "multipart/form-data",
+        //     "data": {
+        //             travelerEmail : $traveler_email,
+        //             status: $status
+        //         }
+        // }
+        // $.ajax({
+        //     url: 'php/upload.php',
+        //     data: $('#file').attr('files'),
+        //     cache: false,
+        //     contentType: 'multipart/form-data',
+        //     processData: false,
+        //     type: 'GET'}).done(
+        // // $.ajax(settings).done(function (response) {
+        // //     console.log(response);
+        // // });
+        // //
         $.post('activateUser', {
             travelerEmail : $traveler_email,
             status: $status
-        },function(responseJson) {
+        },
+        function(responseJson) {
            if(responseJson=='successful'){
                if($status == true){
                    $("#activate_btn_"+$travelerId).addClass("disabled");

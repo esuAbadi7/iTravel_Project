@@ -4,24 +4,20 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.itravel.controller.LoginServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
+
 
 
     <servlet>
         <servlet-name>GetTravelerServlet</servlet-name>
         <servlet-class>com.itravel.controller.GetTravelerServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>GetTravelerServlet</servlet-name>
-        <url-pattern>/getTraveler</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>ActivateUserServlet</servlet-name>
@@ -35,6 +31,58 @@
         <servlet-name>AddPostServlet</servlet-name>
         <servlet-class>com.itravel.controller.AddPostServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCommentServlet</servlet-name>
+        <servlet-class>com.itravel.controller.CommentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FollowServlet</servlet-name>
+        <servlet-class>com.itravel.controller.FollowServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LikeDisLikeServlet</servlet-name>
+        <servlet-class>com.itravel.controller.LikeDislikeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UnhealthyWordServlet</servlet-name>
+        <servlet-class>com.itravel.controller.UnhealthyWordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>com.itravel.controller.SignupServlet</servlet-class>
+    </servlet>
+
+    
+    
+    <servlet-mapping>
+        <servlet-name>SignupServlet</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UnhealthyWordServlet</servlet-name>
+        <url-pattern>/unhealtyWords</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LikeDisLikeServlet</servlet-name>
+        <url-pattern>/likeDisklike</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FollowServlet</servlet-name>
+        <url-pattern>/follow</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTravelerServlet</servlet-name>
+        <url-pattern>/getTraveler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCommentServlet</servlet-name>
+        <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddPostServlet</servlet-name>
         <url-pattern>/addPost</url-pattern>

@@ -24,15 +24,15 @@ public class GetPostServlet extends HttpServlet {
         Traveler traveler = (Traveler) request.getSession().getAttribute("traveler");
 
         PostDao postDao = new PostDao();
-        List<Post> postList = postDao.getAllPosts();
+        List<Post> postList = postDao.getAllPostFeed(traveler.getTravelerId());
 
-        Map<String, Post> allPosts = new LinkedHashMap<>();
+        Map<String, Post> allPostFeed = new LinkedHashMap<>();
         for(Post post: postList){
-            allPosts.put(post.getPostId(),post);
+            allPostFeed.put(post.getPostId(),post);
         }
 
         String json = null;
-        json = new Gson().toJson(allPosts);
+        json = new Gson().toJson(allPostFeed);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

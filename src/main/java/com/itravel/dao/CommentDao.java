@@ -48,33 +48,28 @@ public class CommentDao {
     }
 
 
-    public int addComment(Comment comment)  {
+    public boolean addComment(Comment comment)  {
 
         //       id  post_id	user_id	comment_text	likes	dislikes
 //        user_id	comment_text	likes	dislikes	post_id
-        String sql = "insert into comment (user_id, comment_text, likes, dislikes, post_id ) values(?,?,?,?,?)";
+        String sql = "insert into comment (id,user_id, comment_text, likes, dislikes, post_id ) values(?,?,?,?,?,?)";
         try (Connection con = ConnectionManager.getConnection()){
             PreparedStatement st = con.prepareStatement(sql);
 
-
-            st.setString(1, comment.getTraveler().getTravelerId());
-            st.setString(2, comment.getText());
-            st.setInt(3, comment.getLikes());
-            st.setInt(4, comment.getDislikes());
-            st.setString(5,comment.getPostId());
+            st.setString(1, comment.getCommentId());
+            st.setString(2, comment.getTraveler().getTravelerId());
+            st.setString(3, comment.getText());
+            st.setInt(4, comment.getLikes());
+            st.setInt(5, comment.getDislikes());
+            st.setString(6,comment.getPostId());
 
             st.executeUpdate();
-            ResultSet rs = st.getGeneratedKeys();
-            int generatedKey = 0;
-            if(rs.next()){
-                generatedKey = rs.getInt(1);
-            }
 
-            return generatedKey;
+            return true;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            return -1;
+            return false;
         }
     }
 

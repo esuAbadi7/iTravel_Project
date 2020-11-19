@@ -68,7 +68,25 @@ public class TravelerDao {
     }
 
 
+    public List<Traveler> getTravelersNotFollowedBy(String travelerId) {
+        String sql = "SELECT * FROM traveler\n" +
+                "WHERE traveler.user_id not IN " +
+                "(SELECT follow.followee_id FROM follow where follower_id = ?) and (NOT traveler.user_id =  ?) ;\n";
+        try (Connection con = ConnectionManager.getConnection()) {
 
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, travelerId);
+            st.setString(2, travelerId);
+            ResultSet resultSet = st.executeQuery();
+
+            return populateTravelerList(resultSet);
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 
 
     public Traveler getTravelerUsingEmail(String email) {
