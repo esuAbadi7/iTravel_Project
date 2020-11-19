@@ -26,6 +26,14 @@
             margin: auto;
         }
 
+        footer{
+            margin-top:25px;
+            text-align: center;
+            background-color: #97d12225;
+            color: rgb(34, 36, 30);
+            height:150px;
+        }
+
 
     </style>
 
@@ -401,58 +409,30 @@
                 $('#yourmind').addClass('error');
             }else{
                 postText = $('#postText').val();
-                postImage = $('#image').val();
-                alert($('#image').val());
+                // postImage = $('#image').val();
+                // alert($('#image').val());
                 getLocation();
 
-                var form = document.getElementById('the-form');
-                // form.onsubmit = function() {
-                    var formData = new FormData(form);
+                // var form = document.getElementById('the-form');
 
-                    formData.append('file', file);
+                $.post('addPost', {
+                    travelerId : $travelerId,
+                    postText : postText,
+                    postImage : "",
+                    latitude : $latitude,
+                    longitude : $longitude
 
-                    // var xhr = new XMLHttpRequest();
-                    // // Add any event handlers here...
-                    // xhr.open('POST', form.getAttribute('action'), true);
-                    // xhr.send(formData);
+                }, function(responseJson) {
+                    // After adding the post it should reload and display posts.
+                    if(responseJson=='successful'){
+                        $('#postText').val('');
+                        $('#postSuccess').find('.header').remove();
+                        $('#postSuccess').find('.header').html("You have followed the traveler");
+                        $('#postSuccess').show();
+                        load_Posts();
+                    }
 
-
-                $.ajax({
-                        url: 'addPost',
-                        data: {
-                            travelerId : $travelerId,
-                            postText : postText,
-                            postImage : formData
-                            // latitude : $latitude,
-                            // longitude : $longitude
-
-                        },
-                        cache: false,
-                        contentType: 'multipart/form-data',
-                        processData: true,
-                        type: 'POST'}).done(function (response) {
-                           console.log(response);
-                    });
-
-
-                // $.get('addPost', {
-                //     travelerId : $travelerId,
-                //     postText : postText,
-                //     postImage : postImage,
-                //     latitude : $latitude,
-                //     longitude : $longitude
-                //
-                // }, function(responseJson) {
-                //     // After adding the post it should reload and display posts.
-                //     if(responseJson=='successful'){
-                //         $('#postText').val('');
-                //         $('#postSuccess').find('.header').remove();
-                //         $('#postSuccess').find('.header').html("You have followed the traveler");
-                //         $('#postSuccess').show();
-                //         load_Posts();
-                //     }
-                //
-                // });
+                });
 
             }
 
@@ -531,7 +511,7 @@
         <a href="userProfile.jsp" class="item" style="color: #F9F7F0;">
             Profile
         </a>
-        <a class="item" style="color: #F9F7F0;">
+        <a href="weather.jsp" class="item" style="color: #F9F7F0;">
             Weather Service
         </a>
     </div>

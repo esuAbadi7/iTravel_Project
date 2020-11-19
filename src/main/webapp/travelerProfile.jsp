@@ -26,7 +26,7 @@
     <a class="active item">
         Profile
     </a>
-    <a href="" class="item">
+    <a href="weather.jsp" class="item" style="color: #F9F7F0;">
         Weather Service
     </a>
     <div class="right menu">

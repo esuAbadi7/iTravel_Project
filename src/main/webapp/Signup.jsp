@@ -18,6 +18,7 @@
 
     <%--    <script src = "WEB-INF/js/signup.js" type="text/javascript"></script>--%>
 
+    <style> <%@ include file="WEB-INF/css/footer.css" %></style>
 
     <sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></sript>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/components/form.js"> </script>

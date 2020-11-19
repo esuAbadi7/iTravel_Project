@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <!-- <link href="jsp.css" type="text/css" rel="stylesheet" /> -->
     <script src="userprofile.js" type="text/javascript"></script>
+    <style> <%@ include file="WEB-INF/css/footer.css" %></style>
     <% HttpSession session1 = (HttpSession) request.getSession();
         Traveler traveler;
         traveler= (Traveler) session1.getAttribute("Traveler"); %>
@@ -428,7 +429,7 @@
         <a href="#" class="active item" style="color: #F9F7F0;">
             Profile
         </a>
-        <a class="item" style="color: #F9F7F0;">
+        <a href="weather.jsp" class="item" style="color: #F9F7F0;">
             Weather Service
         </a>
     </div>
@@ -486,11 +487,11 @@
                             </div>
                             <div class="field">
                                 <label>Middle name</label>
-                                <input type="text" name="middlename" placeholder="Middle Name" value="${sessionScope.traveler.firstName}">
+                                <input type="text" name="middlename" placeholder="Middle Name" value="${sessionScope.traveler.middleName}">
                             </div>
                             <div class="field">
                                 <label>Last name</label>
-                                <input type="text" name="lastname" placeholder="Last Name" value="${sessionScope.traveler.firstName}">
+                                <input type="text" name="lastname" placeholder="Last Name" value="${sessionScope.traveler.lastName}">
                             </div>
                         </div>
 
@@ -500,15 +501,15 @@
                             <div class="three fields">
                                 <div class="field">
                                     <label>State</label>
-                                    <input type="text" name="state" placeholder="Newyork" value="">
+                                    <input type="text" name="state" placeholder="Newyork" value="${sessionScope.traveler.address.state}">
                                 </div>
                                 <div class="field">
                                     <label>City</label>
-                                    <input type="text"  name="city" placeholder="Fairfied" value="">
+                                    <input type="text"  name="city" placeholder="Fairfied" value="${sessionScope.traveler.address.city}">
                                 </div>
                                 <div class="field">
                                     <label>Street</label>
-                                    <input type="text" name="street" placeholder="Burlington av" value="">
+                                    <input type="text" name="street" placeholder="Burlington av" value="${sessionScope.traveler.address.street}">
                                 </div>
                             </div>
                         </div>
@@ -518,19 +519,19 @@
                         <div class="three fields">
                             <div class="field">
                                 <label>Zip Code</label>
-                                <input type="text" name="zipcode" placeholder="12556" value="">
+                                <input type="text" name="zipcode" placeholder="12556" value="${sessionScope.traveler.address.zipcode}">
                             </div>
 
                             <div class="field">
                                 <label>Birth year</label>
-                                <input type="text" name="birthyear" placeholder="Year" value="">
+                                <input type="text" name="birthyear" placeholder="Year" value="${sessionScope.traveler.birthYear}">
                             </div>
                             <div class="field">
                                 <label>Gender</label>
-                                <select value="">
+                                <select value="${sessionScope.traveler.gender}">
                                     <option value="">Select Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </div>
                         </div>
@@ -551,7 +552,7 @@
                         <div class="five field wide">
                             <label>Email</label>
                             <div class="ui left icon input">
-                                <input type="email" name="email" placeholder="abc@abc.com" value="">
+                                <input type="email" name="email" placeholder="abc@abc.com" value="${sessionScope.traveler.email}">
                                 <i class="user icon"></i>
                             </div>
                         </div>

@@ -8,6 +8,8 @@
     <link href = "welcome.js" type="text/javascript" />
     <link href = "welcome.css" type="text/css" rel="stylesheet">
 
+    <style> <%@ include file="WEB-INF/css/footer.css" %></style>
+
     <sript src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></sript>
 </head>
 <body>
