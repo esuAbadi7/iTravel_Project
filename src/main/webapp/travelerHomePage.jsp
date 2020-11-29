@@ -59,7 +59,7 @@
 
             load_Posts();
             load_friendSuggestion();
-             $('#postBtn').on("click",do_post);
+             // $('#postBtn').on("click",do_post);
              $('#map').hide();
              $('#postSuccess').hide();
              $('#close').on("click",function() {
@@ -127,23 +127,7 @@
 
                             '                    <div id="commentContainer'+value.postId+'" class="content">\n' +
                             '                        <div id="commentItems'+value.postId+'" class="ui items">\n' +
-                            // '                            <div class="item">\n' +
-                            // '                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">\n' +
-                            // '                                <div class="middle aligned content">\n' +
-                            // '                                    <div class="ui grid">\n' +
-                            // '                                        <div class="eleven wide column">\n' +
-                            // '                                            <label>Traveler Name</label>\n' +
-                            // '                                            <a class="header">12 Years a Slave</a>\n' +
-                            // '                                        </div>\n' +
-                            // '                                        <div class="five wide column">\n' +
-                            // '                                            <div class="Right floated left aligned column">12/02/2020</div>\n' +
-                            // '                                        </div>\n' +
-                            // '                                    </div>\n' +
-                            // '                                    <p>\n' +
-                            // '                                        This is a comment section for users to comment on a post.\n' +
-                            // '                                    </p>\n' +
-                            // '                                </div>\n' +
-                            // '                            </div>\n' +
+
                             '                        </div>\n' +
                             '                    </div>\n' +
                             '\n' +
@@ -549,17 +533,30 @@
 
 <div class="ui centered grid">
     <div class="ui icon input"  id="yourmind">
-<%--        <form id="the-form" action="addPost" enctype="multipart/form-data">--%>
-        <textarea id="postText" name="textarea" cols="40" rows="2" placeholder=" What is on your mind...?"></textarea>
+        <form id="the-form" action="addPost" enctype="multipart/form-data">
+            <div class="ui grid">
+                <div class="twelve wide column">
+                    <textarea id="postText" name="textarea" cols="40" rows="2" placeholder=" What is on your mind...?"></textarea>
+                </div>
+                <div class="two wide column">
+                    <label for="image" class="ui icon button btn-file">
+                        <i class="paperclip icon"></i>
+                        <input type="file" id="image" name="image" accept="image/*" style="display: none">
+                    </label>
+                </div>
+                <div class="one wide column">
+                    <button class="ui-button" type="submit" id="postBtn" data-travelerId="${sessionScope.traveler.travelerId}"> post</button>
+                </div>
 
-        <button type="submit" id="postBtn" data-travelerId="${sessionScope.traveler.travelerId}"> post</button>
-<%--        <div class="ui right floated">--%>
-<%--            <label for="image" class="ui icon button btn-file">--%>
-<%--                <i class="paperclip icon"></i>--%>
-<%--                <input type="file" id="image" name="image" accept="image/*" style="display: none">--%>
-<%--            </label>--%>
-<%--        </div>--%>
-<%--        </form>--%>
+            </div>
+
+
+
+
+            <div class="ui right floated">
+
+            </div>
+        </form>
 
     </div>
 

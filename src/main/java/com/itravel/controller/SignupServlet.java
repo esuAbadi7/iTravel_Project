@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -58,7 +59,11 @@ public class SignupServlet extends HttpServlet {
                 rd.forward(request,response);
             }else {
 
-                request.setAttribute("traveler",traveler);
+//                request.setAttribute("traveler",traveler);
+                HttpSession session = request.getSession();
+                TravelerDao travelerDao = new TravelerDao();
+                Traveler traveler1 = travelerDao.getTravelerUsingEmail(email);
+                session.setAttribute("traveler", traveler);
                 RequestDispatcher rd = request.getRequestDispatcher("travelerHomePage.jsp");
                 rd.forward(request,response);
             }

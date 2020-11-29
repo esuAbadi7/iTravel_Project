@@ -83,11 +83,11 @@ public class DBTest {
 //            System.out.println(posts);
 //        }
 
-        System.out.println(postDao.updatePostDislikes("19081",2));
-        System.out.println(postDao.updatePostLikes("24210",6));
-        System.out.println(postDao.getPost("19081"));
-        System.out.println(postDao.getPostLikes("19081"));
-        System.out.println(postDao.getPostDislikes("19081"));
+//        System.out.println(postDao.updatePostDislikes("19081",2));
+//        System.out.println(postDao.updatePostLikes("24210",6));
+//        System.out.println(postDao.getPost("19081"));
+//        System.out.println(postDao.getPostLikes("19081"));
+        System.out.println(postDao.deletePost("86361"));
 
 //        System.out.println("Travelers that are not followed by  solkassa");
 //        for(Traveler travelerNotFollowed: travelerDao.getTravelersNotFollowedBy("49460")){

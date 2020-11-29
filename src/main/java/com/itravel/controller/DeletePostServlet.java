@@ -15,7 +15,8 @@ public class DeletePostServlet extends HttpServlet {
 
         System.out.println(postId);
         PostDao postDao = new PostDao();
-        boolean result = postDao.deletePost(postId);
+        boolean result = false;
+        result = postDao.deletePost(postId);
 
         String json = null;
         final String RESULT_SUCCESSFUL = "successful";

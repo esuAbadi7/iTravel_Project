@@ -69,7 +69,7 @@
                         htmlContent =
                             '<div style="min-width: 50%;" class="ui centered card">\n' +
                             '                    <div class="content">\n' +
-                            '                        <div class="right floated meta">'+value.postDate.time.hour+'hr <i id="deleteIcon'+value.postId+'" data-postId=id="'+value.postId+'"  class="red delete icon"></i></div>\n' +
+                            '                        <div class="right floated meta">'+value.postDate.time.hour+'hr <i id="deleteIcon'+value.postId+'" data-postId="'+value.postId+'"  class="red delete icon"></i></div>\n' +
                             '                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/kristy.png"> '+value.traveler.firstName+' '+value.traveler.lastName+' \n' +
                             '                    </div>\n' +
                             '                    <div id="imageContainer'+value.postId+'" class="image">\n' +
@@ -118,23 +118,7 @@
 
                             '                    <div id="commentContainer'+value.postId+'" class="content">\n' +
                             '                        <div id="commentItems'+value.postId+'" class="ui items">\n' +
-                            // '                            <div class="item">\n' +
-                            // '                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">\n' +
-                            // '                                <div class="middle aligned content">\n' +
-                            // '                                    <div class="ui grid">\n' +
-                            // '                                        <div class="eleven wide column">\n' +
-                            // '                                            <label>Traveler Name</label>\n' +
-                            // '                                            <a class="header">12 Years a Slave</a>\n' +
-                            // '                                        </div>\n' +
-                            // '                                        <div class="five wide column">\n' +
-                            // '                                            <div class="Right floated left aligned column">12/02/2020</div>\n' +
-                            // '                                        </div>\n' +
-                            // '                                    </div>\n' +
-                            // '                                    <p>\n' +
-                            // '                                        This is a comment section for users to comment on a post.\n' +
-                            // '                                    </p>\n' +
-                            // '                                </div>\n' +
-                            // '                            </div>\n' +
+
                             '                        </div>\n' +
                             '                    </div>\n' +
                             '\n' +
@@ -627,105 +611,105 @@
             </div>
             <div class="ui relaxed divided items" id="postList">
                 <!-- Individual Posts goes here -->
-                <div style="min-width: 35%;" class="ui centered card">
-                    <div class="content">
-                        <div class="right floated meta">14h</div>
-                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/kristy.png"> Elliot
-                    </div>
-                    <div class="image">
-                        <img src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
-                    </div>
-                    <div class="content">
-                        <div class="ui justified container">
-                            <p>
-                                This is the post text content and it is kjabfkvksljbavljbv jaljkvbaljvbhaj hkjklgjadhajlhvlkj kljaghkj  ghakjlgh kjh
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ut quidem corrupti adipisci, ipsa minus aliquam laboriosam ab voluptates pariatur blanditiis laborum ex ipsum saepe perferendis esse voluptatum non magnam.
+<%--                <div style="min-width: 35%;" class="ui centered card">--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="right floated meta">14h</div>--%>
+<%--                        <img class="ui avatar image" src="https://semantic-ui.com/images/avatar2/large/kristy.png"> Elliot--%>
+<%--                    </div>--%>
+<%--                    <div class="image">--%>
+<%--                        <img src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">--%>
+<%--                    </div>--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="ui justified container">--%>
+<%--                            <p>--%>
+<%--                                This is the post text content and it is kjabfkvksljbavljbv jaljkvbaljvbhaj hkjklgjadhajlhvlkj kljaghkj  ghakjlgh kjh--%>
+<%--                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ut quidem corrupti adipisci, ipsa minus aliquam laboriosam ab voluptates pariatur blanditiis laborum ex ipsum saepe perferendis esse voluptatum non magnam.--%>
 
-                            </p>
-                        </div>
-                    </div>
-                    <div class="content">
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="content">--%>
 
-                        <div class="ui grid">
+<%--                        <div class="ui grid">--%>
 
-                            <div class="four wide column">
-                                <button class="circular ui icon button">
-                                    <i class="thumbs up icon"></i>
-                                </button>
-                                <label>17</label>
-                            </div>
-                            <div class="four wide column">
-                                <button class="circular ui icon button">
-                                    <i class="thumbs down icon"></i>
-                                </button>
-
-
-                                <label>1</label>
-                            </div>
-                            <div class="four wide column">
-                                <button class="circular ui icon button">
-                                    <i class="comments icon"></i>
-                                </button>
-                                <!-- <a> comments</a> -->
-
-                            </div>
-                            <div class="four wide column">
-                                <button class="ui icon button">
-                                    <i class="map marker alternate red icon"></i>
-                                    <!-- Location -->
-                                </button>
+<%--                            <div class="four wide column">--%>
+<%--                                <button class="circular ui icon button">--%>
+<%--                                    <i class="thumbs up icon"></i>--%>
+<%--                                </button>--%>
+<%--                                <label>17</label>--%>
+<%--                            </div>--%>
+<%--                            <div class="four wide column">--%>
+<%--                                <button class="circular ui icon button">--%>
+<%--                                    <i class="thumbs down icon"></i>--%>
+<%--                                </button>--%>
 
 
-                            </div>
-                        </div>
+<%--                                <label>1</label>--%>
+<%--                            </div>--%>
+<%--                            <div class="four wide column">--%>
+<%--                                <button class="circular ui icon button">--%>
+<%--                                    <i class="comments icon"></i>--%>
+<%--                                </button>--%>
+<%--                                <!-- <a> comments</a> -->--%>
 
-                    </div>
-                    <div class="content">
-                        <div class="ui items">
-                            <div class="item">
-                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
-                                <div class="middle aligned content">
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <label>Traveler Name</label>
-                                            <a class="header">12 Years a Slave</a>
-                                        </div>
-                                        <div class="five wide column">
-                                            <div class="Right floated left aligned column">12/02/2020</div>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        This is a comment section for users to comment on a post.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">
-                                <div class="middle aligned content">
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <label>Traveler Name</label>
-                                            <a class="header">Name</a>
-                                        </div>
-                                        <div class="five wide column">
-                                            <div class="Right floated left aligned column">12/02/2020</div>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        A description which may flow for several lines and give context to the content.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<%--                            </div>--%>
+<%--                            <div class="four wide column">--%>
+<%--                                <button class="ui icon button">--%>
+<%--                                    <i class="map marker alternate red icon"></i>--%>
+<%--                                    <!-- Location -->--%>
+<%--                                </button>--%>
 
-                    <div class="content">
-                        <div class="ui large transparent left icon input">
-                            <i class="comment outline icon"></i>
-                            <input type="text" placeholder="Add Comment...">
-                        </div>
-                    </div>
-                </div>
+
+<%--                            </div>--%>
+<%--                        </div>--%>
+
+<%--                    </div>--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="ui items">--%>
+<%--                            <div class="item">--%>
+<%--                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">--%>
+<%--                                <div class="middle aligned content">--%>
+<%--                                    <div class="ui grid">--%>
+<%--                                        <div class="eleven wide column">--%>
+<%--                                            <label>Traveler Name</label>--%>
+<%--                                            <a class="header">12 Years a Slave</a>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="five wide column">--%>
+<%--                                            <div class="Right floated left aligned column">12/02/2020</div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <p>--%>
+<%--                                        This is a comment section for users to comment on a post.--%>
+<%--                                    </p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="item">--%>
+<%--                                <img class="ui  avatar image" src="https://semantic-ui.com/examples/assets/images/wireframe/image-text.png">--%>
+<%--                                <div class="middle aligned content">--%>
+<%--                                    <div class="ui grid">--%>
+<%--                                        <div class="eleven wide column">--%>
+<%--                                            <label>Traveler Name</label>--%>
+<%--                                            <a class="header">Name</a>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="five wide column">--%>
+<%--                                            <div class="Right floated left aligned column">12/02/2020</div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <p>--%>
+<%--                                        A description which may flow for several lines and give context to the content.--%>
+<%--                                    </p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="content">--%>
+<%--                        <div class="ui large transparent left icon input">--%>
+<%--                            <i class="comment outline icon"></i>--%>
+<%--                            <input type="text" placeholder="Add Comment...">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
             </div>
 
